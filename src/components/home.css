@@ -1,0 +1,246 @@
+@font-face {
+  font-family: C-reg;
+  src: url("../font/Cinzel-Regular.ttf");
+}
+
+@font-face {
+  font-family: C-var;
+  src: url("../font/Cinzel-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: SSP-reg;
+  src: url("../font/SourceSansPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: SSP-semibold;
+  src: url("../font/SourceSansPro-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: SSP-black;
+  src: url("../font/SourceSansPro-Black.ttf");
+}
+
+@font-face {
+  font-family: SSP-light;
+  src: url("../font/SourceSansPro-Light.ttf");
+}
+
+@font-face {
+  font-family: SSP-italic;
+  src: url("../font/SourceSansPro-Italic.ttf");
+}
+
+.self-center {
+  text-align: center;
+}
+
+.w-bg {
+  background-color: #fff;
+}
+
+.wg-bg {
+  background-color: #ededed;
+}
+
+.wide-100 {
+  width: 100%;
+}
+
+.wide-90 {
+  width: 90%;
+}
+
+.wide-80 {
+  width: 80%;
+}
+
+.wide-45 {
+  width: 45%;
+}
+
+.wide-25 {
+  width: 25%;
+}
+
+.w-10vw {
+  width: 10vw;
+}
+
+.w-20vw {
+  width: 20vw;
+}
+
+.w-30vw {
+  width: 30vw;
+}
+
+.w-37vw {
+  width: 37vw;
+}
+
+.w-64vw {
+  width: 64vw;
+}
+
+.h-21vw {
+  height: 21vw;
+}
+
+.h-36vw {
+  height: 36vw;
+}
+
+.h-45vh {
+  height: 45vh;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+.realtive {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.ab-right-up {
+  top: 3vh;
+  right: 5vw;
+}
+
+.ab-bottom {
+  bottom: 0;
+}
+
+.right {
+  align-self: right;
+}
+
+.b-50 {
+  margin-bottom: 50px;
+}
+
+.lg-red-title {
+  color: #da0037;
+  font-size: 2vw;
+  font-weight: bolder;
+  font-family: C-reg, sans-serif;
+}
+
+.s-title {
+  font-family: SSP-reg, sans-serif;
+  color: #da0037;
+  font-size: 2.5 vw;
+}
+
+.n-title {
+  font-family: SSP-black;
+  color: #000;
+  font-size: 2.5 vw;
+}
+
+.c-title {
+  font-family: SSP-semibold, sans-serif;
+  font-size: 1.5 vw;
+}
+
+.italic {
+  font-family: SSP-italic, sans-serif;
+}
+
+.reg-content {
+  font-family: SSP-reg, sans-serif;
+}
+
+.light-content {
+  font-family: SSP-light, sans-serif;
+}
+
+.fs-1 {
+  font-size: 1vw;
+}
+
+.fs-1h {
+  font-size: 1.5vw;
+}
+
+.pad-l-5px {
+  padding-left: 5px;
+}
+
+.pad-3vw {
+  padding: 3vw;
+}
+
+.pad-l-5vw-r-1vw {
+  padding-left: 5vw;
+  padding-right: 1vw;
+}
+
+.pad-l-1vw-r-5vw {
+  padding-left: 1vw;
+  padding-right: 5vw;
+}
+
+.pad-lr-5vw {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.m-l-10vw {
+  margin-left: 10vw;
+}
+
+.m-l-12vw {
+  margin-left: 12vw;
+}
+
+.m-l-5vw {
+  margin-left: 5vw;
+}
+
+.link {
+  color: #da0037;
+  text-decoration: none;
+}
+.link:hover {
+  cursor: pointer;
+  color: orange;
+}
+
+.dp {
+  display: flex;
+}
+
+.flow-column {
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.self-end {
+  align-self: flex-end;
+}
+
+.dp-jc-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dp-jc-center {
+  display: flex;
+  justify-content: center;
+}
+
+.dp-jc-space {
+  display: flex;
+  justify-content: space-around;
+}
+
+.border-none {
+  border: none;
+}

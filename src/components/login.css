@@ -1,0 +1,61 @@
+.login {
+  text-align: center;
+  position: relative;
+  top: 30vh;
+}
+
+.title {
+  font-weight: bolder;
+}
+
+.logout {
+  position: fixed;
+  right: 3vw;
+  top: 3vh;
+  z-index: 100;
+}
+
+.admin-body {
+  position: relative;
+  top: 5vh;
+}
+
+.section {
+  display: flex;
+  width: 80vw;
+  margin-left: 10vw;
+}
+
+.new-input {
+  width: 30vw;
+}
+
+.current-list {
+  flex-grow: 3;
+}
+
+.input-field {
+  width: 25vw;
+}
+
+.input-text-field {
+  width: 25vw;
+  height: 25vh;
+}
+
+.input-des-field {
+  width: 25vw;
+  height: 10vh;
+}
+
+.list-item {
+  display: flex;
+}
+
+.list-item-content {
+  width: 40vw;
+}
+
+.list-item-button {
+  align-self: center;
+}
