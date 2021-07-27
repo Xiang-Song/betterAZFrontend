@@ -1,31 +1,14 @@
-import React, {useContext, useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { BAContext } from '../context/BAcontext'
+import useResults from '../hooks/useResults'
 import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const Events = () => {
-    const [state, setState] = useContext(BAContext);
-    useEffect(()=>{
-        const getEvents = async()=>{
-            let res = await fetch('https://floating-thicket-57272.herokuapp.com/events');
-            if (res.status !== 200) {
-                setState(state=>({...state, events: [{Headline: '', Description: '', Date: '', Time: '', Location: ''}]}))
-            } else {
-                let data = await res.json();
-                let eventsList = [];
-                for (let item of data){
-                    eventsList.push(item);
-                }
-                setState(state=>({...state, events: eventsList}))
-            }
-        }
-        getEvents();
-        window.scrollTo(0, 0);
-    },[])
-
+    const [state] = useResults();
+  
     const today = new Date();
     const checkdate = new Date(today);
     checkdate.setDate(checkdate.getDate() - 2)

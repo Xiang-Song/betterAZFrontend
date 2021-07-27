@@ -1,30 +1,14 @@
-import React, {useContext, useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { BAContext } from '../context/BAcontext'
+import useResults from '../hooks/useResults'
 import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const Locations = () => {
-    const [state, setState] = useContext(BAContext);
-    useEffect(()=>{
-        const getLocations = async()=>{
-            let res = await fetch('https://floating-thicket-57272.herokuapp.com/locations');
-            if (res.status !== 200) {
-                setState(state=>({...state, locations: [{Location: '', Address: '', Hours: '', Days: '', Priority: '', County: ''}]}))
-            } else {
-                let data = await res.json();
-                let locationsList = [];
-                for (let item of data){
-                    locationsList.push(item);
-                }
-                setState(state=>({...state, locations: locationsList}))
-            }
-        }
-        getLocations();
-        window.scrollTo(0, 0);
-    },[])
+    const [state] = useResults();
+  
 
     return (
         <div className='w-bg wide-90 m-l-5vw'>

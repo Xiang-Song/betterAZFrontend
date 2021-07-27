@@ -1,28 +1,14 @@
-import React, {useContext, useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { BAContext } from '../context/BAcontext'
-import {Alert, Button, Image, Row, Col, Card} from 'react-bootstrap'
+import useResults from '../hooks/useResults'
+import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const SingleNews = () => {
-    const [state, setState] = useContext(BAContext);
-    useEffect(()=>{
-        const newsId = localStorage.getItem('newsId')
-
-        const getNewsDetail = async (id) =>{
-            let res = await fetch('https://floating-thicket-57272.herokuapp.com/news/' + id);
-            if (res.status !== 200) {
-                setState(state=>({...state, detailNews:{Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: ''}, error:'This news is not available now!'}))
-            } else {
-                let data = await res.json();
-                setState (state=>({...state, detailNews:data[0]}))
-            }
-        }
-        getNewsDetail(newsId);
-        window.scrollTo(0, 0);
-    },[])
+    const [state] = useResults();
+  
     return (
         <div className = 'wide-90 m-l-5vw'>
             <Card className= 'relative border-none mt-3'>

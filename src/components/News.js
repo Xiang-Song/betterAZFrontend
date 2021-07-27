@@ -1,46 +1,15 @@
 import React, {useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { BAContext } from '../context/BAcontext'
+import useResults from '../hooks/useResults'
 import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const News = () => {
-    const [state, setState] = useContext(BAContext);
-    useEffect(()=>{
-        const getBanner = async() => {
-            let res = await fetch('https://floating-thicket-57272.herokuapp.com/banner');
-            if (res.status !== 200) {
-                setState(state=>({...state, banner: [{Headline:''}]}))
-            } else {
-                let data = await res.json();
-                let bannerList = [];
-                for (let item of data){
-                    bannerList.push(item);
-                }
-                setState(state=>({...state, banner: bannerList}))
-            }
-        }
+    const [state, setState] = useResults();
     
-        const getNews = async()=>{
-            let res = await fetch('https://floating-thicket-57272.herokuapp.com/news');
-            if (res.status !== 200) {
-                setState(state=>({...state, news: [{Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: ''}]}))
-            } else {
-                let data = await res.json();
-                let newsList = [];
-                for (let item of data){
-                    newsList.push(item);
-                }
-                setState(state=>({...state, news: newsList}))
-            }
-        }
-
-        getBanner();
-        getNews();
-        window.scrollTo(0, 0);
-    },[])
 
     const getNewsDetail = async (id) =>{
         localStorage.setItem('newsId', id );
