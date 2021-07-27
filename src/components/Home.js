@@ -54,10 +54,10 @@ const Home = () => {
                 
                 <Col xs lg = '8' className='pad-l-1vw-r-5vw'> 
                 <h3 className = 'self-center s-title wg-bg'>WHAT'S HOT</h3>
-                {state.news.sort((a, b) => (a.Date < b.Date) ? 1 : -1).slice(0,3).map((item)=>{
+                {state.news.sort((a, b) => (a.Date < b.Date) ? 1 : -1).slice(0,3).map((item, index)=>{
                     return(
                         item.ImageLink ? 
-                        <Card key={item.id} className='border-none w-bg'>
+                        <Card key={index} className='border-none w-bg'>
                             <Row className='pad-l-5px'>
                                 <Col xs lg = '4'>
                                     <Image src={item.ImageLink} className='w-20vw mt-4'/>
@@ -77,7 +77,7 @@ const Home = () => {
                             </Row>
                         </Card>
                         : item.VideoLink ?
-                        <Card key={item.id} className='border-none w-bg'>
+                        <Card key={index} className='border-none w-bg'>
                             <Row className='pad-l-5px'>
                                 <Col xs lg = '4'>
                                     <div className="embed-responsive embed-responsive-16by9">
@@ -100,7 +100,7 @@ const Home = () => {
                             </Row>
                         </Card>
                         :
-                        <Card key={item.id} className='border-none w-bg'>
+                        <Card key={index} className='border-none w-bg'>
                             <Card.Body>
                                 <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                 <Card.Text className='light-content fs-1h'>
@@ -121,9 +121,9 @@ const Home = () => {
             <Row>
                 <Col className='pad-l-5vw-r-1vw'>
                     <h3 className = 'self-center s-title wg-bg'>WHERE TO SIGN?</h3>
-                    {state.locations.sort((a, b)=>(a.Priority < b.Priority) ? 1 : -1).slice(0,5).map((item)=>{
+                    {state.locations.sort((a, b)=>(a.Priority < b.Priority) ? 1 : -1).slice(0,5).map((item, index)=>{
                         return(
-                            <Card key={item.id} className='border-none w-bg'>
+                            <Card key={index} className='border-none w-bg'>
                                 <Card.Title className='dp-jc-center c-title mt-4'>{item.Location}</Card.Title>
                                 <Card.Text className='light-content fs-1h dp-jc-center mb-1'>
                                     HOURS: {item.Hours} | DAYS: {item.Days} | COUNTY: {item.County}
