@@ -125,9 +125,11 @@ const Home = () => {
                         return(
                             <Card key={item.id} className='border-none w-bg'>
                                 <Card.Title className='dp-jc-center c-title mt-4'>{item.Location}</Card.Title>
-                                <Card.Text className='light-content fs-1h'>
-                                    <p className='dp-jc-center mb-1'>HOURS: {item.Hours} | DAYS: {item.Days} | COUNTY: {item.County}</p>
-                                    <p className='dp-jc-center mb-1'>{item.Address}</p>
+                                <Card.Text className='light-content fs-1h dp-jc-center mb-1'>
+                                    HOURS: {item.Hours} | DAYS: {item.Days} | COUNTY: {item.County}
+                                </Card.Text>
+                                <Card.Text className='light-content fs-1h dp-jc-center mb-1'>
+                                    {item.Address}
                                 </Card.Text>
                             </Card>
                         )
@@ -141,11 +143,9 @@ const Home = () => {
                             return(
                                 <Card key={item.id} className='border-none yellow-bg pad-l-5px'>
                                     <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
-                                    <Card.Text className='light-content fs-1h'>
-                                        <p className='dp-jc-center mb-1'>{item.Description}</p>
-                                        <p className='dp-jc-center mb-1'>{item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</p>
-                                        <p className='dp-jc-center mb-1'>{item.Time} @ {item.Location}</p>
-                                    </Card.Text>
+                                    <Card.Text className='light-content fs-1h dp-jc-center mb-1'>{item.Description}</Card.Text>
+                                    <Card.Text className='light-content fs-1h dp-jc-center mb-1'>{item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</Card.Text>
+                                    <Card.Text className='light-content fs-1h dp-jc-center mb-1'>{item.Time} @ {item.Location}</Card.Text>
                                 </Card>
                             )
                         })}
