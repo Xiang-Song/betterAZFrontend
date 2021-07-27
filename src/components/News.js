@@ -80,7 +80,7 @@ const News = () => {
                                     <Card.Body>
                                         <Card.Title className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='light-content fs-1h'>
-                                            {item.Date.split('T')[0]} - {item.Textbody.substring(0,500)}
+                                        {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
@@ -103,7 +103,7 @@ const News = () => {
                                     <Card.Body>
                                         <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='light-content fs-1h'>
-                                            {item.Date.split('T')[0]} - {item.Textbody.substring(0,500)}
+                                        {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
@@ -118,7 +118,7 @@ const News = () => {
                             <Card.Body>
                                 <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                 <Card.Text className='light-content fs-1h'>
-                                            {item.Date.split('T')[0]} - {item.Textbody.substring(0,500)}
+                                {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>

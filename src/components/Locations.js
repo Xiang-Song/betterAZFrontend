@@ -47,7 +47,7 @@ const Locations = () => {
                                 <Card.Title className='dp-jc-center c-title mt-4'>{item.Location}</Card.Title>
                                 <Card.Text className='light-content fs-1h'>
                                     <p className='dp-jc-center mb-1'>HOURS: {item.Hours} | DAYS: {item.Days} | COUNTY: {item.County}</p>
-                                    <p className='dp-jc-center mb-1'>ADDRESS: {item.Address}</p>
+                                    <p className='dp-jc-center mb-1'>{item.Address}</p>
                                 </Card.Text>
                             </Card>
                         )

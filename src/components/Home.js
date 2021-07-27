@@ -86,22 +86,25 @@ const Home = () => {
     checkdate.setDate(checkdate.getDate() - 2)
     
     return (
-        <div className='container-fluid w-bg'>
-            <Alert variant='light w-bg mt-5' >
+        <div className='container-fluid pale-blue-bg pt-5'>
+            <Alert variant='light w-bg' >
                 <Alert.Heading className='self-center lg-red-title'>{state.banner[0].Headline}</Alert.Heading>
             </Alert>
-            <Card className= 'relative border-none'>
+            <Card className= 'relative border-black'>
                 <Image src={heading} className='wide-80 b-50 m-l-10vw'/>
                 <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger"className='absolute ab-right-up'>Donate</Button>
             </Card>
             
-            <Row className='mb-5'>
+            <Row className='mb-5 mt-3'>
                 <Col xs lg = '4' className='pad-l-5vw-r-1vw dp flow-column'>
                     <div>
                         <h3 className = 'self-center s-title wg-bg'>WE CAN STOP THEM.</h3><br />
-                        <p className='reg-content fs-1h'>Today’s Arizona legislature wants to limit your voting rights. <br />The Arizona legislature of a century ago gave us the tools to fight back.</p>
-                        <p className='reg-content fs-1h'>Unlike other states whose legislatures are also passing bills to curtail voting rights, Arizona has a constitution that allows the voters themselves either to veto or uphold bills passed by the Legislature and signed by the Governor.</p>
-                        <p className='reg-content fs-1h'>Arizona Deserves Better is organizing a referendum effort to repeal these laws. With your help, we can gather 118,000 signatures in 90 days. Arizonans have stopped unpopular laws before and we can do it again, but we can’t do it without you.</p>
+                    </div>
+                    <div className='yellow-bg pad-l-5px'>
+                        <p className='reg-content fs-1h text-indent'>Today’s Arizona legislature wants to limit your voting rights.</p> 
+                        <p className='reg-content fs-1h text-indent'>The Arizona legislature of a century ago gave us the tools to fight back.</p>
+                        <p className='reg-content fs-1h text-indent'>Unlike other states whose legislatures are also passing bills to curtail voting rights, Arizona has a constitution that allows the voters themselves either to veto or uphold bills passed by the Legislature and signed by the Governor.</p>
+                        <p className='reg-content fs-1h text-indent'>Arizona Deserves Better is organizing a referendum effort to repeal these laws. With your help, we can gather 118,000 signatures in 90 days. Arizonans have stopped unpopular laws before and we can do it again, but we can’t do it without you.</p>
                     </div>
                     <div className='dp-jc-space'>
                         <Button variant="danger" className='wide-45'>Voluteer</Button>
@@ -123,7 +126,7 @@ const Home = () => {
                                     <Card.Body>
                                         <Card.Title className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='light-content fs-1h'>
-                                            {item.Date.split('T')[0]} - {item.Textbody.substring(0,200)}
+                                        {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
@@ -146,7 +149,7 @@ const Home = () => {
                                     <Card.Body>
                                         <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='light-content fs-1h'>
-                                            {item.Date.split('T')[0]} - {item.Textbody.substring(0,200)}
+                                        {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
@@ -161,7 +164,7 @@ const Home = () => {
                             <Card.Body>
                                 <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                 <Card.Text className='light-content fs-1h'>
-                                            {item.Date.split('T')[0]} - {item.Textbody.substring(0,200)}
+                                {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
@@ -184,7 +187,7 @@ const Home = () => {
                                 <Card.Title className='dp-jc-center c-title mt-4'>{item.Location}</Card.Title>
                                 <Card.Text className='light-content fs-1h'>
                                     <p className='dp-jc-center mb-1'>HOURS: {item.Hours} | DAYS: {item.Days} | COUNTY: {item.County}</p>
-                                    <p className='dp-jc-center mb-1'>ADDRESS: {item.Address}</p>
+                                    <p className='dp-jc-center mb-1'>{item.Address}</p>
                                 </Card.Text>
                             </Card>
                         )
@@ -196,11 +199,12 @@ const Home = () => {
                         <h3 className = 'self-center s-title wg-bg'>EVENTS</h3>
                         {state.events.sort((a, b)=>(a.Date > b.Date) ? 1 : -1).filter(e=>new Date(e.Date) > checkdate).slice(0,4).map((item)=>{
                             return(
-                                <Card key={item.id} className='border-none w-bg'>
+                                <Card key={item.id} className='border-none yellow-bg pad-l-5px'>
                                     <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
                                     <Card.Text className='light-content fs-1h'>
                                         <p className='dp-jc-center mb-1'>{item.Description}</p>
-                                        <p className='dp-jc-center mb-1'>DATE: {item.Date.split('T')[0]} | TIME: {item.Time} @ {item.Location}</p>
+                                        <p className='dp-jc-center mb-1'>{item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</p>
+                                        <p className='dp-jc-center mb-1'>{item.Time} @ {item.Location}</p>
                                     </Card.Text>
                                 </Card>
                             )

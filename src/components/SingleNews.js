@@ -42,7 +42,7 @@ const SingleNews = () => {
             <div className='mt-3'>
                 <h2 className = 'self-center n-title'>{state.detailNews.Headline}</h2><br />
                 <div className='dp-jc-end'>
-                    <h6 className='italic'>{state.detailNews.Date.split('T')[0]} from {state.detailNews.Source}</h6>
+                    <h6 className='italic'>{state.detailNews.Date.split('T')[0].split('-')[1]}-{state.detailNews.Date.split('T')[0].split('-')[2]}-{state.detailNews.Date.split('T')[0].split('-')[0]} from {state.detailNews.Source}</h6>
                 </div>
                 {state.detailNews.ImageLink ? 
                 <Image src={state.detailNews.ImageLink} className='w-64vw h-36vw m-l-12vw'/> :
@@ -56,7 +56,7 @@ const SingleNews = () => {
                 <div className='mt-5 ight-content'>
                 {state.detailNews.Textbody.split('\n').map((item, index)=>{
                     return(
-                        <p key={index}>{item}</p>
+                        <p key={index} className='text-indent'>{item}</p>
                     )
                 })}
                 </div>

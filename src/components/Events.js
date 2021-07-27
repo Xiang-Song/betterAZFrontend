@@ -51,7 +51,8 @@ const Events = () => {
                         <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
                         <Card.Text className='light-content fs-1h'>
                             <p className='dp-jc-center mb-1'>{item.Description}</p>
-                            <p className='dp-jc-center mb-1'>DATE: {item.Date.split('T')[0]} | TIME: {item.Time} @ {item.Location}</p>
+                            <p className='dp-jc-center mb-1'>{item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</p>
+                            <p className='dp-jc-center mb-1'>{item.Time} @ {item.Location}</p>
                         </Card.Text>
                     </Card>
                 )
