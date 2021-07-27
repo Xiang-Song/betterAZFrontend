@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {Button, Alert, Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'

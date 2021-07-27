@@ -128,7 +128,7 @@ const Login = () => {
             let axiosConfig = {headers: {Authorization: "JWT " + token}};
             
             try {
-                let res = await axios.post('https://floating-thicket-57272.herokuapp.com/users/replaceBanner',bannerData, axiosConfig);
+                await axios.post('https://floating-thicket-57272.herokuapp.com/users/replaceBanner',bannerData, axiosConfig);
                 setBannerInput({headline: ''})
             } catch(error){
                 console.error(error.response.data)
@@ -150,7 +150,7 @@ const Login = () => {
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         
         try {
-            let res = await axios.post('https://floating-thicket-57272.herokuapp.com/users/createNews',newsData, axiosConfig);
+            await axios.post('https://floating-thicket-57272.herokuapp.com/users/createNews',newsData, axiosConfig);
             setNewsInput({headline: '', textbody:'', date: '', source: '', imageLink: '', videoLink: ''});
             await getNews();
         } catch(error){
@@ -172,7 +172,7 @@ const Login = () => {
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
 
         try {
-            let res = await axios.post('https://floating-thicket-57272.herokuapp.com/users/createEvent',eventData, axiosConfig);
+            await axios.post('https://floating-thicket-57272.herokuapp.com/users/createEvent',eventData, axiosConfig);
             setEventInput({headline: '', description: '', date: '', time: '', location: ''});
             await getEvents();
         } catch(error){
@@ -193,7 +193,7 @@ const Login = () => {
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         try {
-            let res = await axios.post('https://floating-thicket-57272.herokuapp.com/users/createLocation',locationData, axiosConfig);
+            await axios.post('https://floating-thicket-57272.herokuapp.com/users/createLocation',locationData, axiosConfig);
             setLocationInput({location: '', address: '', hours: '', days: '', priority: '', county: '' });
             await getLocations();
         } catch(error){

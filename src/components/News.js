@@ -1,6 +1,5 @@
-import React, {useContext, useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { BAContext } from '../context/BAcontext'
 import useResults from '../hooks/useResults'
 import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
