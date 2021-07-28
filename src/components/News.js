@@ -25,29 +25,29 @@ const News = () => {
             <Card className= 'relative border-none mt-3'>
                 <Row>
                     <Col xs lg = '4'>
-                    <Image src={heading} className='w-30vw'/>
+                    <Link to='/home'><Image src={heading} className='w-30vw'/></Link>
                     </Col>
                     <Col xs lg = '8'>
-                        <Card.Body className='dp-jc-end mt-3'>
+                        <Card.Body className='dp-jc-end mt-0 mt-lg-3 pt-1'>
                             <Link to='/home' className='link'>Home</Link>
                         </Card.Body>
                     </Col>
                 </Row>
             </Card>
             <Row>
-            <h2 className = 'self-center s-title wg-bg mt-3'>News Room</h2><br />
+            <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3'>News Room</h2>
             {state.news.sort((a, b) => (a.Date < b.Date) ? 1 : -1).map((item)=>{
                     return(
                         item.ImageLink ? 
                         <Card key={item.id} className='border-none w-bg'>
                             <Row className='pad-l-5px'>
-                                <Col xs lg = '5'>
-                                    <Image src={item.ImageLink} className='w-37vw mt-4'/>
+                                <Col xs={12} lg = {5}>
+                                    <Image src={item.ImageLink} className='img-news-room mt-4'/>
                                 </Col>
-                                <Col xs lg = '7'>
+                                <Col xs={12} lg = {7}>
                                     <Card.Body>
                                         <Card.Title className='c-title'>{item.Headline}</Card.Title>
-                                        <Card.Text className='light-content fs-1h'>
+                                        <Card.Text className='reg-content fs-1h'>
                                         {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
@@ -61,16 +61,16 @@ const News = () => {
                         : item.VideoLink ?
                         <Card key={item.id} className='border-none w-bg'>
                             <Row className='pad-l-5px'>
-                                <Col xs lg = '5'>
+                                <Col xs={12} lg = {5}>
                                     <div className="embed-responsive embed-responsive-16by9">
-                                    <iframe title="Embeds Page" className="embed-responsive-item w-37vw h-21vw mt-4" src={"https://www.youtube.com/embed/"+item.VideoLink.split('=')[1]}
+                                    <iframe title="Embeds Page" className="embed-responsive-item img-news-room h-21vw mt-4" src={"https://www.youtube.com/embed/"+item.VideoLink.split('=')[1]}
                                         allowFullScreen></iframe>
                                     </div>
                                 </Col>
-                                <Col xs lg = '7'>
+                                <Col xs={12} lg = {7}>
                                     <Card.Body>
                                         <Card.Title  className='c-title'>{item.Headline}</Card.Title>
-                                        <Card.Text className='light-content fs-1h'>
+                                        <Card.Text className='reg-content fs-1h'>
                                         {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 
@@ -85,7 +85,7 @@ const News = () => {
                         <Card key={item.id} className='border-none w-bg'>
                             <Card.Body>
                                 <Card.Title  className='c-title'>{item.Headline}</Card.Title>
-                                <Card.Text className='light-content fs-1h'>
+                                <Card.Text className='reg-content fs-1h'>
                                 {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             onClick={()=>getNewsDetail(item.id)} 

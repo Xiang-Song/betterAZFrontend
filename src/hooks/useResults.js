@@ -59,12 +59,24 @@ export default () => {
             setState(state=>({...state, locations: locationsList}))
         }
     }
+
+    const getNewsDetailById = async () =>{
+        let id = localStorage.getItem('newsId');
+        let res = await fetch('https://floating-thicket-57272.herokuapp.com/news/' + id);
+        if (res.status !== 200) {
+            setState(state=>({...state, detailNews:{}, error:'This news is not available now!'}))
+        } else {
+            let data = await res.json();
+            setState (state=>({...state, detailNews:data[0]}))
+        }
+    }
     
     useEffect(()=>{
         getBanner();
         getNews();
         getEvents();
         getLocations();
+        getNewsDetailById();
         window.scrollTo(0, 0);
     },[])
     

@@ -15,20 +15,20 @@ const Locations = () => {
             <Card className= 'relative border-none mt-3'>
                 <Row>
                     <Col xs lg = '4'>
-                    <Image src={heading} className='w-30vw'/>
+                    <Link to='/home'><Image src={heading} className='w-30vw'/></Link>
                     </Col>
                     <Col xs lg = '8'>
-                        <Card.Body className='dp-jc-end mt-3'>
+                        <Card.Body className='dp-jc-end mt-0 mt-lg-3 pt-1'>
                             <Link to='/home' className='link'>Home</Link>
                         </Card.Body>
                     </Col>
                 </Row>
             </Card>
-            <h2 className = 'self-center s-title wg-bg mt-3'>All Available Sign Locations</h2><br />
+            <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3'>All Available Sign Locations</h2>
             {state.locations.sort((a, b)=>(a.Priority < b.Priority) ? 1 : -1).map((item)=>{
                         return(
                             <Card key={item.id} className='border-none w-bg'>
-                                <Card.Title className='dp-jc-center c-title mt-4'>{item.Location}</Card.Title>
+                                <Card.Title className='dp-jc-center c-title mt-2 mt-lg-4'>{item.Location}</Card.Title>
                                 <Card.Text className='light-content fs-1h'>
                                     <p className='dp-jc-center mb-1'>HOURS: {item.Hours} | DAYS: {item.Days} | COUNTY: {item.County}</p>
                                     <p className='dp-jc-center mb-1'>{item.Address}</p>

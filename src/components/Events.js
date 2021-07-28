@@ -18,16 +18,16 @@ const Events = () => {
             <Card className= 'relative border-none mt-3'>
                 <Row>
                     <Col xs lg = '4'>
-                    <Image src={heading} className='w-30vw'/>
+                    <Link to='/home'><Image src={heading} className='w-30vw'/></Link>
                     </Col>
                     <Col xs lg = '8'>
-                        <Card.Body className='dp-jc-end mt-3'>
+                        <Card.Body className='dp-jc-end mt-0 mt-lg-3 pt-1'>
                             <Link to='/home' className='link'>Home</Link>
                         </Card.Body>
                     </Col>
                 </Row>
             </Card>
-            <h2 className = 'self-center s-title wg-bg mt-3'>All Future Events</h2><br />
+            <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3'>All Future Events</h2>
             {state.events.sort((a, b)=>(a.Date > b.Date) ? 1 : -1).filter(e=>new Date(e.Date) > checkdate).map((item)=>{
                 return(
                     <Card key={item.id} className='border-none w-bg'>
@@ -41,7 +41,6 @@ const Events = () => {
                 )
             })}
             <div><Link to='/home' className='link pad-l-5px'>Back to Home</Link></div>
-            
         </div>
     )
 }
