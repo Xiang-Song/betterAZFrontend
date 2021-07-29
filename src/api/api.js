@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: 'https://floating-thicket-57272.herokuapp.com',
+    baseURL: 'https://better-az-backend-ngsmk.ondigitalocean.app/api',
 });
