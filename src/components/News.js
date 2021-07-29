@@ -25,11 +25,11 @@ const News = () => {
             <Card className= 'relative border-none mt-3'>
                 <Row>
                     <Col xs lg = '4'>
-                    <Link to='/home'><Image src={heading} className='w-30vw'/></Link>
+                    <Link to='/'><Image src={heading} className='w-30vw'/></Link>
                     </Col>
                     <Col xs lg = '8'>
                         <Card.Body className='dp-jc-end mt-0 mt-lg-3 pt-1'>
-                            <Link to='/home' className='link'>Home</Link>
+                            <Link to='/' className='link'>Home</Link>
                         </Card.Body>
                     </Col>
                 </Row>
@@ -96,7 +96,7 @@ const News = () => {
                         </Card>
                     )
                 })}
-                <div><Link to='/home' className='link pad-l-5px'>Back to Home</Link></div>
+                <div><Link to='/' className='link pad-l-5px'>Back to Home</Link></div>
             </Row>
         </div>
     )

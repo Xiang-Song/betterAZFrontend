@@ -16,7 +16,7 @@ const App = () => {
       <BAProvider>
       <Switch>
       <Route path="/admin" component={Login} />
-      <Route path="/home" component={Home} />
+      <Route exact path="/" component={Home} />
       <Route path="/news" component={News} />
       <Route path="/newsdetails/:id" component={SingleNews} />
       <Route path="/events" component={Events} />

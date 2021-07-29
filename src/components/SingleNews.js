@@ -14,11 +14,11 @@ const SingleNews = () => {
             <Card className= 'relative border-none mt-3'>
                 <Row>
                     <Col xs={4} lg={4}>
-                    <Link to='/home'><Image src={heading} className='w-30vw'/></Link>
+                    <Link to='/'><Image src={heading} className='w-30vw'/></Link>
                     </Col>
                     <Col xs={8} lg={8}>
                         <Card.Body className='dp-jc-end mt-0 mt-lg-3 pt-1'>
-                            <Link to='/home' className='link navtab'>Home</Link>
+                            <Link to='/' className='link navtab'>Home</Link>
                             <Link to='/news' className='link navtab'>News Room</Link>
                         </Card.Body>
                     </Col>
