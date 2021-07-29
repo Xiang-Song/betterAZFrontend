@@ -1,17 +1,18 @@
 import { useContext, useEffect } from "react";
 import { BAContext } from '../context/BAcontext'
+import api from '../api/api'
 
 export default () => {
     const [state, setState] = useContext(BAContext);
 
     const getBanner = async() => {
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/banner');
+        let res = await api.get('/banner');
         if (res.status !== 200) {
             setState(state=>({...state, banner: [{Headline:''}]}))
         } else {
-            let data = await res.json();
+            
             let bannerList = [];
-            for (let item of data){
+            for (let item of res.data){
                 bannerList.push(item);
             }
             setState(state=>({...state, banner: bannerList}))
@@ -19,13 +20,12 @@ export default () => {
     }
     
     const getNews = async()=>{
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/news');
+        let res = await api.get('/news');
         if (res.status !== 200) {
             setState(state=>({...state, news: [{Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: ''}]}))
         } else {
-            let data = await res.json();
             let newsList = [];
-            for (let item of data){
+            for (let item of res.data){
                 newsList.push(item);
             }
             setState(state=>({...state, news: newsList}))
@@ -33,13 +33,12 @@ export default () => {
     }
     
     const getEvents = async()=>{
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/events');
+        let res = await api.get('/events');
         if (res.status !== 200) {
             setState(state=>({...state, events: [{Headline: '', Description: '', Date: '', Time: '', Location: ''}]}))
         } else {
-            let data = await res.json();
             let eventsList = [];
-            for (let item of data){
+            for (let item of res.data){
                 eventsList.push(item);
             }
             setState(state=>({...state, events: eventsList}))
@@ -47,13 +46,12 @@ export default () => {
     }
     
     const getLocations = async()=>{
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/locations');
+        let res = await api.get('/locations');
         if (res.status !== 200) {
             setState(state=>({...state, locations: [{Location: '', Address: '', Hours: '', Days: '', Priority: '', County: ''}]}))
         } else {
-            let data = await res.json();
             let locationsList = [];
-            for (let item of data){
+            for (let item of res.data){
                 locationsList.push(item);
             }
             setState(state=>({...state, locations: locationsList}))
@@ -62,12 +60,11 @@ export default () => {
 
     const getNewsDetailById = async () =>{
         let id = localStorage.getItem('newsId');
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/news/' + id);
+        let res = await api.get('/news/' + id);
         if (res.status !== 200) {
             setState(state=>({...state, detailNews:{}, error:'This news is not available now!'}))
         } else {
-            let data = await res.json();
-            setState (state=>({...state, detailNews:data[0]}))
+            setState (state=>({...state, detailNews:res.data[0]}))
         }
     }
     

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import useResults from '../hooks/useResults'
 import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
+import api from '../api/api'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
@@ -12,12 +13,11 @@ const News = () => {
 
     const getNewsDetail = async (id) =>{
         localStorage.setItem('newsId', id );
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/news/' + id);
+        let res = await api.get('/news/' + id);
         if (res.status !== 200) {
             setState(state=>({...state, detailNews:{}, error:'This news is not available now!'}))
         } else {
-            let data = await res.json();
-            setState (state=>({...state, detailNews:data[0]}))
+            setState (state=>({...state, detailNews:res.data[0]}))
         }
     }
     return (

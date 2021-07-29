@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import api from '../api/api'
 import './login.css'
 
 const Login = () => {
@@ -24,14 +24,13 @@ const Login = () => {
     },[])
 
     const getBanner = async() => {
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/banner');
+        let res = await api.get('/banner');
         if (res.status !== 200) {
             setIsLogin(false);
             setBanner('')
         } else {
-            let data = await res.json();
             let bannerList = [];
-            for (let item of data){
+            for (let item of res.data){
                 bannerList.push(item);
             }
             setBanner(bannerList)
@@ -39,14 +38,13 @@ const Login = () => {
     }
 
     const getNews = async()=>{
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/news');
+        let res = await api.get('/news');
         if (res.status !== 200) {
             setIsLogin(false);
             setNews([])
         } else {
-            let data = await res.json();
             let newsList = [];
-            for (let item of data){
+            for (let item of res.data){
                 newsList.push(item);
             }
             setNews(newsList)
@@ -54,14 +52,13 @@ const Login = () => {
     }
 
     const getEvents = async()=>{
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/events');
+        let res = await api.get('/events');
         if (res.status !== 200) {
             setIsLogin(false);
             setEvents([])
         } else {
-            let data = await res.json();
             let eventsList = [];
-            for (let item of data){
+            for (let item of res.data){
                 eventsList.push(item);
             }
             setEvents(eventsList)
@@ -69,14 +66,13 @@ const Login = () => {
     }
 
     const getLocations = async()=>{
-        let res = await fetch('https://floating-thicket-57272.herokuapp.com/locations');
+        let res = await api.get('/locations');
         if (res.status !== 200) {
             setIsLogin(false);
             setLocations([])
         } else {
-            let data = await res.json();
             let locationsList = [];
-            for (let item of data){
+            for (let item of res.data){
                 locationsList.push(item);
             }
             setLocations(locationsList)
@@ -96,7 +92,7 @@ const Login = () => {
     const handleLogin = async () => {
         const {username, password} = inputValue;
         try {
-            const res = await axios.post('https://floating-thicket-57272.herokuapp.com/users/login',{
+            const res = await api.post('users/login',{
                 username, 
                 password
             });
@@ -128,8 +124,9 @@ const Login = () => {
             let axiosConfig = {headers: {Authorization: "JWT " + token}};
             
             try {
-                await axios.post('https://floating-thicket-57272.herokuapp.com/users/replaceBanner',bannerData, axiosConfig);
+                await api.post('/users/replaceBanner',bannerData, axiosConfig);
                 setBannerInput({headline: ''})
+                await getBanner();
             } catch(error){
                 console.error(error.response.data)
             }
@@ -150,7 +147,7 @@ const Login = () => {
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         
         try {
-            await axios.post('https://floating-thicket-57272.herokuapp.com/users/createNews',newsData, axiosConfig);
+            await api.post('/users/createNews',newsData, axiosConfig);
             setNewsInput({headline: '', textbody:'', date: '', source: '', imageLink: '', videoLink: ''});
             await getNews();
         } catch(error){
@@ -172,7 +169,7 @@ const Login = () => {
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
 
         try {
-            await axios.post('https://floating-thicket-57272.herokuapp.com/users/createEvent',eventData, axiosConfig);
+            await api.post('/users/createEvent',eventData, axiosConfig);
             setEventInput({headline: '', description: '', date: '', time: '', location: ''});
             await getEvents();
         } catch(error){
@@ -193,7 +190,7 @@ const Login = () => {
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         try {
-            await axios.post('https://floating-thicket-57272.herokuapp.com/users/createLocation',locationData, axiosConfig);
+            await api.post('/users/createLocation',locationData, axiosConfig);
             setLocationInput({location: '', address: '', hours: '', days: '', priority: '', county: '' });
             await getLocations();
         } catch(error){
@@ -206,7 +203,7 @@ const Login = () => {
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         try {
-            await axios.post('https://floating-thicket-57272.herokuapp.com/users/deleteNews', data, axiosConfig);
+            await api.post('/users/deleteNews', data, axiosConfig);
             await getNews();
         } catch(error){
             console.error(error.response.data)
@@ -218,7 +215,7 @@ const Login = () => {
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         try {
-            await axios.post('https://floating-thicket-57272.herokuapp.com/users/deleteEvent', data, axiosConfig);
+            await api.post('/users/deleteEvent', data, axiosConfig);
             await getEvents();
         } catch(error){
             console.error(error.response.data)
@@ -230,7 +227,7 @@ const Login = () => {
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         try {
-            await axios.post('https://floating-thicket-57272.herokuapp.com/users/deleteLocation', data, axiosConfig);
+            await api.post('/users/deleteLocation', data, axiosConfig);
             await getLocations();
         } catch(error){
             console.error(error.response.data)
