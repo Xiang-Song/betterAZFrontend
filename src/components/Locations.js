@@ -24,7 +24,7 @@ const Locations = () => {
                     </Col>
                 </Row>
             </Card>
-            <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3'>All Available Sign Locations</h2>
+            <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3'>All Available Signing Locations</h2>
             {state.locations.sort((a, b)=>(a.Priority < b.Priority) ? 1 : -1).map((item)=>{
                         return(
                             <Card key={item.id} className='border-none w-bg'>
