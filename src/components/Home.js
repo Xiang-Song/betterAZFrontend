@@ -178,13 +178,11 @@ const Home = () => {
                             })}
                             <div><Link to='/events' className='link'>...MORE EVENTS</Link></div>
                         </div>
-                        
                     </div>
                     <div className='dp-jc-space mt-2'>
                         <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='wide-45'>Voluteer</Button>
                         <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger" className='wide-45'>Donate</Button>
                     </div>
-                    
                 </Col>
             </Row>
             <footer>
@@ -193,7 +191,6 @@ const Home = () => {
                     <Col xs={10} lg ={10} className='ft-col-l'>
                         <p className='ft-text'>Copyright © 2021 Arizona Deserves Better - All Rights Reserved.</p>
                     </Col>
-                    
                 </Row>
             </footer>
 
