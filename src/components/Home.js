@@ -144,7 +144,7 @@ const Home = () => {
                     <h3 className = 'self-center s-title wg-bg'>What's on Our Social Media</h3>
                     <div className=' w-bg mb-3 mb-lg-5'>
                         <Row>
-                            <Col xs={10} lg={10} className='pad-1113-vw'>
+                            <Col xs={10} lg={10} className='pad-sm'>
                             <p><strong>Twitter</strong>: {state.twitter[0].twitter}</p>
                             </Col>
                             <Col xs={2} lg={2} className='dp align-bt pad-icon'>
@@ -152,7 +152,7 @@ const Home = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={10} lg={10} className='pad-1113-vw'>
+                            <Col xs={10} lg={10} className='pad-sm'>
                             <p><strong>Facebook</strong>: {state.facebook[0].facebook}</p>
                             </Col>
                             <Col xs={2} lg={2} className='dp align-bt pad-icon'>

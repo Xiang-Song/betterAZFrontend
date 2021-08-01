@@ -213,9 +213,11 @@
 .pad-3vw {
   padding: 3vw;
 }
-.pad-1113-vw {
+
+.pad-sm {
   padding: 1vw 1vw 1vw 3vw;
 }
+
 .pad-l-5vw-r-1vw {
   padding-left: 5vw;
   padding-right: 1vw;
@@ -359,6 +361,10 @@
   .pad-l-1vw-r-5vw {
     padding-left: 5vw;
     padding-right: 5vw;
+  }
+
+  .pad-sm {
+    padding: 1vw 1vw 1vw 5vw;
   }
 
   .img-embed {
