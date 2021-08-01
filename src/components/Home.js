@@ -33,7 +33,8 @@ const Home = () => {
             </Alert>
             <Card className= 'relative border-black'>
                 <Image src={heading} className='wide-80 m-l-10vw'/>
-                <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger"className='absolute ab-right-up btn-responsive'>Donate</Button>
+                <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger" className='absolute ab-right-up'>Donate</Button>
+                <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='absolute ab-right-second'>Voluteer</Button>
             </Card>
             
             <Row>
@@ -59,12 +60,12 @@ const Home = () => {
                     {state.news.sort((a, b) => (a.Date < b.Date) ? 1 : -1).slice(0,3).map((item, index)=>{
                         return(
                             item.ImageLink ? 
-                            <Card key={index} className='border-option'>
+                            <Card key={index} className='border-none'>
                                 <Row className='pad-l-5px'>
-                                    <Col xs={12} lg={4}>
+                                    <Col xs={12} lg={6}>
                                         <Image src={item.ImageLink} className='img-embed mt-1 mt-lg-4'/>
                                     </Col>
-                                    <Col xs={12} lg={8}>
+                                    <Col xs={12} lg={6}>
                                         <Card.Body>
                                             <Card.Title className='c-title'>{item.Headline}</Card.Title>
                                             <Card.Text className='reg-content fs-1h'>
@@ -79,15 +80,15 @@ const Home = () => {
                                 </Row>
                             </Card>
                             : item.VideoLink ?
-                            <Card key={index} className='border-option'>
+                            <Card key={index} className='border-none'>
                                 <Row className='pad-l-5px'>
-                                    <Col xs={12} lg={4}>
+                                    <Col xs={12} lg={6}>
                                         <div className="embed-responsive embed-responsive-16by9">
                                         <iframe title="Embeds Page" className="embed-responsive-item img-embed mt-4" src={"https://www.youtube.com/embed/"+item.VideoLink.split('=')[1]}
                                             allowFullScreen></iframe>
                                         </div>
                                     </Col>
-                                    <Col xs={12} lg={8}>
+                                    <Col xs={12} lg={6}>
                                         <Card.Body>
                                             <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                             <Card.Text className='reg-content fs-1h'>
@@ -102,7 +103,7 @@ const Home = () => {
                                 </Row>
                             </Card>
                             :
-                            <Card key={index} className='border-option'>
+                            <Card key={index} className='border-none'>
                                 <Card.Body>
                                     <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                     <Card.Text className='reg-content fs-1h'>
@@ -124,7 +125,7 @@ const Home = () => {
             <Row>
                 <Col xs={12} lg={6} className='pad-l-5vw-r-1vw mt-3 mt-lg-5'>
                     <h3 className = 'self-center s-title wg-bg'>WHERE TO SIGN?</h3>
-                    <div className=' w-bg'>
+                    <div className=' w-bg mb-3 mb-lg-5'>
                         {state.locations.sort((a, b)=>(a.Priority < b.Priority) ? 1 : -1).slice(0,5).map((item, index)=>{
                             return(
                                 <Card key={index} className='border-none'>
@@ -140,7 +141,25 @@ const Home = () => {
                         })}
                         <div><Link to='/locations' className='link'>...MORE LOCATIONS</Link></div>
                     </div>
-                    
+                    <h3 className = 'self-center s-title wg-bg'>What's on Our Social Media</h3>
+                    <div className=' w-bg mb-3 mb-lg-5'>
+                        <Row>
+                            <Col xs={10} lg={10} className='pad-1113-vw'>
+                            <p><strong>Twitter</strong>: {state.twitter[0].twitter}</p>
+                            </Col>
+                            <Col xs={2} lg={2} className='dp align-bt pad-icon'>
+                            <SocialIcon url='https://twitter.com/better_az?lang=en' target ='_blank' style={{height:35, width:35}}/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={10} lg={10} className='pad-1113-vw'>
+                            <p><strong>Facebook</strong>: {state.facebook[0].facebook}</p>
+                            </Col>
+                            <Col xs={2} lg={2} className='dp align-bt pad-icon'>
+                            <SocialIcon url='https://www.facebook.com/azdeservesbetter' target ='_blank' style={{height:35, width:35}}/>
+                            </Col>
+                        </Row>
+                    </div>
                 </Col>
                 <Col xs={12} lg={6} className='pad-l-1vw-r-5vw dp flow-column mt-3 mt-lg-5'>
                     <div>
@@ -148,11 +167,12 @@ const Home = () => {
                         <div className='yellow-bg'>
                             {state.events.sort((a, b)=>(a.Date > b.Date) ? 1 : -1).filter(e=>new Date(e.Date) > checkdate).slice(0,4).map((item)=>{
                                 return(
-                                    <Card key={item.id} className='border-none yellow-bg pad-l-5px'>
+                                    <Card key={item.id} className='border-none yellow-bg pad-l-5px mb-1 mb-lg-3'>
                                         <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Description}</Card.Text>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</Card.Text>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Time} @ {item.Location}</Card.Text>
+                                        <Card.Text className='italic fs-1h dp-jc-center mb-1'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
                                     </Card>
                                 )
                             })}
@@ -173,9 +193,7 @@ const Home = () => {
                     <Col xs={10} lg ={10} className='ft-col-l'>
                         <p className='ft-text'>Copyright © 2021 Arizona Deserves Better - All Rights Reserved.</p>
                     </Col>
-                    <Col xs={2} lg ={2}>
-                        <SocialIcon url='https://www.facebook.com/azdeservesbetter' target ='_blank' style={{ height: 25, width: 25 }}/>
-                    </Col>
+                    
                 </Row>
             </footer>
 

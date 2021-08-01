@@ -35,7 +35,7 @@ export default () => {
     const getEvents = async()=>{
         let res = await api.get('/events');
         if (res.status !== 200) {
-            setState(state=>({...state, events: [{Headline: '', Description: '', Date: '', Time: '', Location: ''}]}))
+            setState(state=>({...state, events: [{Headline: '', Description: '', Date: '', Time: '', Location: '', notary: null, petition: null}]}))
         } else {
             let eventsList = [];
             for (let item of res.data){
@@ -67,6 +67,33 @@ export default () => {
             setState (state=>({...state, detailNews:res.data[0]}))
         }
     }
+
+    const getTwitter = async() => {
+        let res = await api.get('/twitter');
+        if (res.status !== 200) {
+            setState(state=>({...state, twitter: [{twitter:''}]}))
+        } else {
+            
+            let ttList = [];
+            for (let item of res.data){
+                ttList.push(item);
+            }
+            setState(state=>({...state, twitter: ttList}))
+        }
+    }
+
+    const getFb = async() => {
+        let res = await api.get('/facebook');
+        if (res.status !== 200) {
+            setState(state=>({...state, twitter: [{twitter:''}]}))
+        } else {
+            let fbList = [];
+            for (let item of res.data){
+                fbList.push(item);
+            }
+            setState(state=>({...state, facebook: fbList}))
+        }
+    }
     
     useEffect(()=>{
         getBanner();
@@ -74,6 +101,8 @@ export default () => {
         getEvents();
         getLocations();
         getNewsDetailById();
+        getTwitter();
+        getFb();
         window.scrollTo(0, 0);
     },[])
     

@@ -30,13 +30,14 @@ const Events = () => {
             <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3'>All Future Events</h2>
             {state.events.sort((a, b)=>(a.Date > b.Date) ? 1 : -1).filter(e=>new Date(e.Date) > checkdate).map((item)=>{
                 return(
-                    <Card key={item.id} className='border-none w-bg'>
+                    <Card key={item.id} className='border-bt w-bg mb-5'>
                         <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
-                        <Card.Text className='light-content fs-1h'>
+                        <Card.Text className='light-content fs-1h mb-1'>
                             <p className='dp-jc-center mb-1'>{item.Description}</p>
                             <p className='dp-jc-center mb-1'>{item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</p>
-                            <p className='dp-jc-center mb-1'>{item.Time} @ {item.Location}</p>
+                            <p className='dp-jc-center'>{item.Time} @ {item.Location}</p>
                         </Card.Text>
+                        <Card.Text className='italic fs-1h dp-jc-center mb-1 mt-1'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
                     </Card>
                 )
             })}

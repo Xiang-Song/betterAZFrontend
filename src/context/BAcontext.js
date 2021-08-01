@@ -7,9 +7,11 @@ const BAProvider = (props) => {
     const [state, setState] = useState({
        banner: [{Headline:''}],
        news: [{Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: ''}],
-       events:[{Headline: '', Description: '', Date: '', Time: '', Location: ''}],
+       events:[{Headline: '', Description: '', Date: '', Time: '', Location: '', notary: null, petition: null}],
        locations:[{Location: '', Address: '', Hours: '', Days: '', Priority: '', County: ''}],
        detailNews: {Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: ''},
+       twitter: [{twitter: ''}],
+       facebook: [{facebook: ''}],
        error:''
     });
     return (

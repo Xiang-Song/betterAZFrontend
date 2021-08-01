@@ -10,10 +10,14 @@ const Login = () => {
     const [newsInput, setNewsInput] = useState({headline: '', textbody:'', date: '', source: '', imageLink: '', videoLink: ''});
     const [eventInput, setEventInput] = useState({headline: '', description: '', date: '', time: '', location: ''});
     const [locationInput, setLocationInput] = useState({location: '', address: '', hours: '', days: '', priority: '', county: '' });
-    const [banner, setBanner] = useState([]);
+    const [twitterInput, setTwitterInput] = useState({twitter: ''});
+    const [fbInput, setFbInput] = useState({facebook: ''});
+    const [banner, setBanner] = useState([{Headline: ''}]);
     const [news, setNews] = useState([]);
     const [events, setEvents] = useState([]);
     const [locations, setLocations] = useState([]);
+    const [twitter, setTwitter] = useState([{twitter:''}]);
+    const [fb, setFb] = useState([{facebook:''}]);
     // const [showData, setShowData] = useState({showBanner: false, showNews: false, showEvents: false, showLocatoins: false})
 
     useEffect(()=>{
@@ -21,19 +25,49 @@ const Login = () => {
         getNews();
         getEvents();
         getLocations();
+        getTwitter();
+        getFacebook();
     },[])
 
     const getBanner = async() => {
         let res = await api.get('/banner');
         if (res.status !== 200) {
             setIsLogin(false);
-            setBanner('')
+            setBanner([])
         } else {
             let bannerList = [];
             for (let item of res.data){
                 bannerList.push(item);
             }
             setBanner(bannerList)
+        }
+    }
+
+    const getTwitter = async() => {
+        let res = await api.get('/twitter');
+        if (res.status !== 200) {
+            setIsLogin(false);
+            setTwitter([])
+        } else {
+            let ttList = [];
+            for (let item of res.data){
+                ttList.push(item);
+            }
+            setTwitter(ttList)
+        }
+    }
+
+    const getFacebook = async() => {
+        let res = await api.get('/facebook');
+        if (res.status !== 200) {
+            setIsLogin(false);
+            setFb([])
+        } else {
+            let fbList = [];
+            for (let item of res.data){
+                fbList.push(item);
+            }
+            setFb(fbList)
         }
     }
 
@@ -117,6 +151,14 @@ const Login = () => {
         setBannerInput({headline: e.target.value})
     }
 
+    const handleTwitterInput = (e) =>{
+        setTwitterInput({twitter: e.target.value})
+    }
+
+    const handleFbInput = (e) =>{
+        setFbInput({facebook: e.target.value})
+    }
+
     const handleBannerSubmit = async() => {
         if (bannerInput.headline !== ''){
             let bannerData = {Headline: bannerInput.headline};
@@ -127,6 +169,38 @@ const Login = () => {
                 await api.post('/users/replaceBanner',bannerData, axiosConfig);
                 setBannerInput({headline: ''})
                 await getBanner();
+            } catch(error){
+                console.error(error.response.data)
+            }
+        }
+    }
+
+    const handleTwitterSubmit = async() => {
+        if (twitterInput.twitter !== ''){
+            let twitterData = {twitter: twitterInput.twitter};
+            let token = localStorage.getItem('JWT');
+            let axiosConfig = {headers: {Authorization: "JWT " + token}};
+            
+            try {
+                await api.post('/users/replaceTwitter',twitterData, axiosConfig);
+                setTwitterInput({twitter: ''})
+                await getTwitter();
+            } catch(error){
+                console.error(error.response.data)
+            }
+        }
+    }
+
+    const handleFacebookSubmit = async() => {
+        if (fbInput.facebook !== ''){
+            let fbData = {facebook: fbInput.facebook};
+            let token = localStorage.getItem('JWT');
+            let axiosConfig = {headers: {Authorization: "JWT " + token}};
+            
+            try {
+                await api.post('/users/replaceFb',fbData, axiosConfig);
+                setFbInput({facebook: ''})
+                await getFacebook();
             } catch(error){
                 console.error(error.response.data)
             }
@@ -234,7 +308,29 @@ const Login = () => {
         }
     }
 
-    
+    const handleNotaryChange = async(e, id)=>{
+        let data = {id: id, notary: e.target.checked ? 1 : null}
+        let token = localStorage.getItem('JWT');
+        let axiosConfig = {headers: {Authorization: "JWT " + token}};
+        try {
+            await api.post('/users/updateEvent', data, axiosConfig);
+            await getEvents();
+        } catch(error){
+            console.error(error.response.data)
+        }
+    }
+
+    const handlePetitionChange = async(e, id)=>{
+        let data = {id: id, petition: e.target.checked ? 1 : null}
+        let token = localStorage.getItem('JWT');
+        let axiosConfig = {headers: {Authorization: "JWT " + token}};
+        try {
+            await api.post('/users/updateEvent', data, axiosConfig);
+            await getEvents();
+        } catch(error){
+            console.error(error.response.data)
+        }
+    }
 
     if (!isLogin) {
         return (
@@ -264,6 +360,30 @@ const Login = () => {
                     </div>
                 </div>
                 <hr /><hr />
+                <div className='section'>
+                    <div className='new-input'>
+                        <label className='title'>Replace with New Twitter text</label><br /><br />
+                        <textarea className='input-text-field' placeholder='new Twitter text' value={twitterInput.text} onChange={handleTwitterInput} /><br />
+                        <button onClick={handleTwitterSubmit}>Replace with New Twitter Text</button>
+                    </div>
+                    <div className='current-list'>
+                        <label className='title'>Current Twitter Text</label>
+                        <p>{twitter[0].twitter}</p>
+                    </div>
+                </div>
+                <hr /><hr />
+                <div className='section'>
+                    <div className='new-input'>
+                        <label className='title'>Replace with New Facebook text</label><br /><br />
+                        <textarea className='input-text-field' placeholder='new Facebook text' value={fbInput.facebook} onChange={handleFbInput} /><br />
+                        <button onClick={handleFacebookSubmit}>Replace with New Facebook Text</button>
+                    </div>
+                    <div className='current-list'>
+                        <label className='title'>Current Facebook Text</label>
+                        <p>{fb[0].facebook}</p>
+                    </div>
+                </div>
+                <hr /><hr />
                 
                 <div className='section'>
                     <div className='new-input'>
@@ -279,9 +399,12 @@ const Login = () => {
                     <div className='current-list'>
                         <label className='title'>Current news list (Headline)</label>
                         {news.map((item)=>{
-                            return <div key={item.id} className='list-item'>
+                            return <div key={item.id}>
+                                <div className='list-item'>
                                 <p className='list-item-content'>{item.Headline}</p>
                                 <button className='list-item-button' onClick={()=>deleteNews(item.id)}>delete this news</button>
+                                </div>
+                                <hr />
                                 </div>
                         })}
                     </div>
@@ -291,7 +414,7 @@ const Login = () => {
                     <div className='new-input'>
                         <label className='title'>Add New Event</label><br /><br />
                         <input className='input-field' placeholder='headline' name='headline' value={eventInput.headline} onChange={handleEventInput} /><br />
-                        <textarea className='input-des-field' placeholder='description' name='description' value={eventInput.description} onChange={handleEventInput} /><br />
+                        <textarea className='input-text-field' placeholder='description' name='description' value={eventInput.description} onChange={handleEventInput} /><br />
                         <input className='input-field' placeholder='date' name='date' value={eventInput.date} onChange={handleEventInput} /><br />
                         <input className='input-field' placeholder='time' name='time' value={eventInput.time} onChange={handleEventInput} /><br />
                         <input className='input-field' placeholder='location' name='location' value={eventInput.location} onChange={handleEventInput} /><br />
@@ -299,10 +422,15 @@ const Login = () => {
                     </div>
                     <div className='current-list'>
                         <label className='title'>Current Events List (Headline)</label>
-                        {events.map((item)=>{
-                            return <div key={item.id} className='list-item'>
+                        {events.sort((a, b) => (a.id > b.id) ? 1 : -1).map((item)=>{
+                            return <div key={item.id}>
+                                <div className='list-item'>
                                 <p className='list-item-content'>{item.Headline}</p>
                                 <button className='list-item-button' onClick={()=>deleteEvent(item.id)}>delete this event</button>
+                                <p>Notary: <input type="checkbox" name="notary" value="notary" defaultChecked={item.notary} onChange={(e)=>handleNotaryChange(e, item.id)} /></p>
+                                <p>Petition: <input type="checkbox" name="petition" value="petition" defaultChecked={item.petition} onChange={(e)=>handlePetitionChange(e, item.id)} /></p>
+                                </div>
+                                <hr />
                                 </div>
                         })}
                     </div>
@@ -322,9 +450,12 @@ const Login = () => {
                     <div className='current-list'>
                         <label className='title'>Current Sign Location List</label>
                         {locations.map((item)=>{
-                            return <div key={item.id} className='list-item'>
+                            return <div key={item.id}>
+                                <div className='list-item'>
                                 <p className='list-item-content'>{item.Location} | {item.County} | Priority: {item.Priority}</p>
                                 <button className='list-item-button' onClick={()=>deleteLocation(item.id)}>delete this location</button>
+                                </div>
+                                <hr />
                                 </div>
                         })}
                     </div>

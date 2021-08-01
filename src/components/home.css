@@ -82,7 +82,8 @@
 }
 
 .img-embed {
-  width: 20vw;
+  width: 30vw;
+  height: 17vw;
 }
 
 .w-30vw {
@@ -126,8 +127,27 @@
 }
 
 .ab-right-up {
-  top: 3vh;
-  right: 5vw;
+  top: 1vw;
+  right: 2vw;
+  width: 15vw;
+  height: 3vw;
+  font-size: 1.2em;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ab-right-second {
+  top: 4.5vw;
+  right: 2vw;
+  width: 15vw;
+  height: 3vw;
+  font-size: 1.2em;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ab-bottom {
@@ -182,6 +202,10 @@
   font-size: 1.5vw;
 }
 
+.pad-icon {
+  padding-left: 0;
+}
+
 .pad-l-5px {
   padding-left: 5px;
 }
@@ -189,7 +213,9 @@
 .pad-3vw {
   padding: 3vw;
 }
-
+.pad-1113-vw {
+  padding: 1vw 1vw 1vw 3vw;
+}
 .pad-l-5vw-r-1vw {
   padding-left: 5vw;
   padding-right: 1vw;
@@ -217,6 +243,10 @@
   margin-left: 5vw;
 }
 
+.m-l-1vw {
+  margin-left: 1vw;
+}
+
 .link {
   color: #da0037;
   text-decoration: none;
@@ -230,6 +260,10 @@
 
 .dp {
   display: flex;
+}
+
+.align-bt {
+  align-items: center;
 }
 
 .flow-column {
@@ -260,8 +294,10 @@
   border: none;
 }
 
-.border-option {
-  border: none;
+.border-bt {
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }
 
 .border-black {
@@ -286,25 +322,33 @@
   padding-left: 0;
 }
 
-.ft-icon {
-  width: 5px;
-  height: 5px;
-}
-
 .ft-text {
   font-size: 0.8em;
 }
 
 @media (max-width: 768px) {
-  .btn-responsive {
-    padding: 2px 4px;
-    font-size: 80%;
-    line-height: 1;
+  .ab-right-up {
+    top: 1vw;
+    right: 2vw;
+    width: 12vw;
+    height: 3vw;
+    font-size: 0.5em;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .ab-right-up {
-    top: 1vh;
+  .ab-right-second {
+    top: 5vw;
     right: 2vw;
+    width: 12vw;
+    height: 3vw;
+    font-size: 0.5em;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .pad-l-5vw-r-1vw {
@@ -364,15 +408,28 @@
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
-  .btn-responsive {
-    padding: 4px 9px;
-    font-size: 90%;
-    line-height: 1.2;
+  .ab-right-up {
+    top: 1vw;
+    right: 2vw;
+    width: 15vw;
+    height: 3vw;
+    font-size: 0.8em;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .ab-right-up {
-    top: 1vh;
+  .ab-right-second {
+    top: 4.5vw;
     right: 2vw;
+    width: 15vw;
+    height: 3vw;
+    font-size: 0.8em;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .pad-l-5vw-r-1vw {
