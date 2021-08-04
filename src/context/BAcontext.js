@@ -9,7 +9,6 @@ const BAProvider = (props) => {
        news: [{Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: ''}],
        events:[{Headline: '', Description: '', Date: '', Time: '', Location: '', notary: null, petition: null}],
        locations:[{Location: '', Address: '', Hours: '', Days: '', Priority: '', County: ''}],
-       detailNews: {Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: ''},
        twitter: [{twitter: ''}],
        facebook: [{facebook: ''}],
        error:''

@@ -9,17 +9,6 @@ import './home.css'
 
 const News = () => {
     const [state, setState] = useResults();
-    
-
-    const getNewsDetail = async (id) =>{
-        localStorage.setItem('newsId', id );
-        let res = await api.get('/news/' + id);
-        if (res.status !== 200) {
-            setState(state=>({...state, detailNews:{}, error:'This news is not available now!'}))
-        } else {
-            setState (state=>({...state, detailNews:res.data[0]}))
-        }
-    }
     return (
         <div className='w-bg wide-90 m-l-5vw'>
             <Card className= 'relative border-none mt-3'>
@@ -50,7 +39,6 @@ const News = () => {
                                         <Card.Text className='reg-content fs-1h'>
                                         {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
-                                            onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
                                                 ...Read More
                                             </Link></Card.Text>
@@ -73,7 +61,6 @@ const News = () => {
                                         <Card.Text className='reg-content fs-1h'>
                                         {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
-                                            onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
                                                 ...Read More
                                             </Link></Card.Text>
@@ -88,7 +75,6 @@ const News = () => {
                                 <Card.Text className='reg-content fs-1h'>
                                 {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
                                             <Link to={'newsdetails/'+item.id} 
-                                            onClick={()=>getNewsDetail(item.id)} 
                                             className='link'>
                                                 ...Read More
                                             </Link></Card.Text>

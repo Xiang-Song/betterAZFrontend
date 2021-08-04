@@ -58,16 +58,6 @@ export default () => {
         }
     }
 
-    const getNewsDetailById = async () =>{
-        let id = localStorage.getItem('newsId');
-        let res = await api.get('/news/' + id);
-        if (res.status !== 200) {
-            setState(state=>({...state, detailNews:{}, error:'This news is not available now!'}))
-        } else {
-            setState (state=>({...state, detailNews:res.data[0]}))
-        }
-    }
-
     const getTwitter = async() => {
         let res = await api.get('/twitter');
         if (res.status !== 200) {
@@ -100,7 +90,6 @@ export default () => {
         getNews();
         getEvents();
         getLocations();
-        getNewsDetailById();
         getTwitter();
         getFb();
         window.scrollTo(0, 0);
