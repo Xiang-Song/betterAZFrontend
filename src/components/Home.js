@@ -10,18 +10,8 @@ import './home.css'
 
 const Home = () => {
 
-    const [state, setState] = useResults();
+    const [state] = useResults();
     
-    const getNewsDetail = async (id) =>{
-        localStorage.setItem('newsId', id );
-        let res = await api.get('/news/' + id);
-        if (res.status !== 200) {
-            setState(state=>({...state, detailNews:{}, error:'This news is not available now!'}))
-        } else {
-            setState (state=>({...state, detailNews:res.data[0]}))
-        }
-    }
-
     const today = new Date();
     const checkdate = new Date(today);
     checkdate.setDate(checkdate.getDate() - 2)
@@ -71,7 +61,6 @@ const Home = () => {
                                             <Card.Text className='reg-content fs-1h'>
                                             {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
                                                 <Link to={'newsdetails/'+item.id} 
-                                                onClick={()=>getNewsDetail(item.id)} 
                                                 className='link'>
                                                     ...Read More
                                                 </Link></Card.Text>
@@ -94,7 +83,6 @@ const Home = () => {
                                             <Card.Text className='reg-content fs-1h'>
                                             {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
                                                 <Link to={'newsdetails/'+item.id} 
-                                                onClick={()=>getNewsDetail(item.id)} 
                                                 className='link'>
                                                     ...Read More
                                                 </Link></Card.Text>
@@ -109,7 +97,6 @@ const Home = () => {
                                     <Card.Text className='reg-content fs-1h'>
                                     {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
                                                 <Link to={'newsdetails/'+item.id} 
-                                                onClick={()=>getNewsDetail(item.id)} 
                                                 className='link'>
                                                     ...Read More
                                                 </Link></Card.Text>

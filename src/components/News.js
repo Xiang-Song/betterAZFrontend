@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const News = () => {
-    const [state, setState] = useResults();
+    const [state] = useResults();
     return (
         <div className='w-bg wide-90 m-l-5vw'>
             <Card className= 'relative border-none mt-3'>
