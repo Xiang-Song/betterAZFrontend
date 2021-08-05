@@ -3,6 +3,7 @@ import api from '../api/api'
 import './login.css'
 
 const Login = () => {
+    const date = new Date();
     const [isLogin, setIsLogin] = useState(false);
     const [inputValue, setInputValue] = useState({username: '', password:''});
     const [error, setError] = useState('');
@@ -425,7 +426,7 @@ const Login = () => {
                         {events.sort((a, b) => (a.id > b.id) ? 1 : -1).map((item)=>{
                             return <div key={item.id}>
                                 <div className='list-item'>
-                                <p className='list-item-content'>{item.Headline}</p>
+                                <p className='list-item-content'>{item.Headline} @ {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</p>
                                 <button className='list-item-button' onClick={()=>deleteEvent(item.id)}>delete this event</button>
                                 <p>Notary: <input type="checkbox" name="notary" value="notary" defaultChecked={item.notary} onChange={(e)=>handleNotaryChange(e, item.id)} /></p>
                                 <p>Petition: <input type="checkbox" name="petition" value="petition" defaultChecked={item.petition} onChange={(e)=>handlePetitionChange(e, item.id)} /></p>

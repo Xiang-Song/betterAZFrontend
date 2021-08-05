@@ -4,14 +4,12 @@ import {Button, Alert, Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
 import useResults from '../hooks/useResults'
 import { SocialIcon } from 'react-social-icons';
-import api from '../api/api'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const Home = () => {
 
     const [state] = useResults();
-    
     const today = new Date();
     const checkdate = new Date(today);
     checkdate.setDate(checkdate.getDate() - 2)

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import useResults from '../hooks/useResults'
 import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
-import api from '../api/api'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
