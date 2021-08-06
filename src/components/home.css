@@ -328,6 +328,10 @@
   font-size: 0.8em;
 }
 
+.btn:focus {
+  box-shadow: none;
+}
+
 @media (max-width: 768px) {
   .ab-right-up {
     top: 1vw;

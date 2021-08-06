@@ -110,7 +110,7 @@ const Home = () => {
             <Row>
                 <Col xs={12} lg={6} className='pad-l-5vw-r-1vw mt-3 mt-lg-5'>
                     <h3 className = 'self-center s-title wg-bg'>WHERE TO SIGN?</h3>
-                    <div className=' w-bg mb-3 mb-lg-5'>
+                    <div className=' w-bg mb-1 mb-lg-3'>
                         {state.locations.sort((a, b)=>(a.Priority < b.Priority) ? 1 : -1).slice(0,5).map((item, index)=>{
                             return(
                                 <Card key={index} className='border-none'>
@@ -126,6 +126,7 @@ const Home = () => {
                         })}
                         <div><Link to='/locations' className='link'>...MORE LOCATIONS</Link></div>
                     </div>
+                    <Button href="https://docs.google.com/spreadsheets/d/1RI9TI4f3EOexct1LujvoyoauHmelanS5lhWQyvJK5w8/edit?usp=sharing" target='_blank' variant="outline-danger" className='wide-100 mb-3 mb-lg-5 c-title'>See All Petition Depots</Button>
                     <h3 className = 'self-center s-title wg-bg'>What's on Our Social Media</h3>
                     <div className=' w-bg mb-3 mb-lg-5'>
                         <Row>
