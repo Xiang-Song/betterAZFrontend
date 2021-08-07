@@ -332,6 +332,11 @@
   box-shadow: none;
 }
 
+.eventsQR {
+  width: 25%;
+  margin-left: 3px;
+}
+
 @media (max-width: 768px) {
   .ab-right-up {
     top: 1vw;

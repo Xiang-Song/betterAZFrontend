@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {Button, Alert, Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
+import eventsQR from '../image/eventsQR.png'
 import useResults from '../hooks/useResults'
 import { SocialIcon } from 'react-social-icons';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -163,6 +164,7 @@ const Home = () => {
                                 )
                             })}
                             <div><Link to='/events' className='link'>...MORE EVENTS</Link></div>
+                            <Image src={eventsQR} className='eventsQR mb-1 mb-lg-3'/>
                         </div>
                     </div>
                     <div className='dp-jc-space mt-2'>
