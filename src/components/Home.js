@@ -22,7 +22,7 @@ const Home = () => {
             <Card className= 'relative border-black'>
                 <Image src={heading} className='wide-80 m-l-10vw'/>
                 <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger" className='absolute ab-right-up'>Donate</Button>
-                <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='absolute ab-right-second'>Voluteer</Button>
+                <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='absolute ab-right-second'>Volunteer</Button>
             </Card>
             
             <Row>
@@ -37,7 +37,7 @@ const Home = () => {
                         <p className='reg-content fs-1h text-indent'>Arizona Deserves Better is organizing a referendum effort to repeal these laws. With your help, we can gather 118,000 signatures in 90 days. Arizonans have stopped unpopular laws before and we can do it again, but we can’t do it without you.</p>
                     </div>
                     <div className='dp-jc-space'>
-                        <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='wide-45'>Voluteer</Button>
+                        <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='wide-45'>Volunteer</Button>
                         <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger" className='wide-45'>Donate</Button>
                     </div>
                 </Col>
@@ -166,7 +166,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className='dp-jc-space mt-2'>
-                        <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='wide-45'>Voluteer</Button>
+                        <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='wide-45'>Volunteer</Button>
                         <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger" className='wide-45'>Donate</Button>
                     </div>
                 </Col>
