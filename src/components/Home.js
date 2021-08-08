@@ -12,8 +12,11 @@ const Home = () => {
 
     const [state] = useResults();
     const today = new Date();
-    const checkdate = new Date(today);
-    checkdate.setDate(checkdate.getDate() - 2)
+    const AZdate = today.toLocaleString('en-us', {
+        timeZone: 'America/Phoenix'
+      })
+    const checkdate = new Date(AZdate)
+    checkdate.setDate(checkdate.getDate() -1 )
     
     return (
         <div className='container-fluid pale-blue-bg pt-3 pt-lg-5'>
