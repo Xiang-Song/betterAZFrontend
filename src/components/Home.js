@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {Button, Alert, Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
+import capital_clouds from '../image/capital_clouds.jpg'
 import eventsQR from '../image/eventsQR.png'
 import useResults from '../hooks/useResults'
 import { SocialIcon } from 'react-social-icons';
@@ -34,6 +35,7 @@ const Home = () => {
                     <div>
                         <h3 className = 'self-center s-title wg-bg'>WE CAN STOP THEM.</h3>
                     </div>
+                    <Image src={capital_clouds} className='wide-100'/>
                     <div className='yellow-bg pad-l-5px mb-2'>
                         <p className='reg-content fs-1h text-indent'>Today’s Arizona legislature wants to limit your voting rights.</p> 
                         <p className='reg-content fs-1h text-indent'>The Arizona legislature of a century ago gave us the tools to fight back.</p>
