@@ -8,6 +8,17 @@ import './home.css'
 
 const News = () => {
     const [state] = useResults();
+    const formatDate = (oldDate) =>{
+        return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
+    }
+    const formatText = (txt, n, date) =>{
+        const shortTxt = txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '));
+        return (
+            shortTxt.match(/<http.*>/)
+            ? <>{shortTxt.match(/.*?(?=<http|$)/si)[0]}<a href={shortTxt.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{shortTxt.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {shortTxt.match(/>(.*)/s)[1]}</>
+            : <>{shortTxt}</>
+        )
+    }
     return (
         <div className='w-bg wide-90 m-l-5vw'>
             <Card className= 'relative border-none mt-3'>
@@ -36,7 +47,7 @@ const News = () => {
                                     <Card.Body>
                                         <Card.Title className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='reg-content fs-1h'>
-                                        {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
+                                        {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             className='link'>
                                                 ...Read More
@@ -58,7 +69,7 @@ const News = () => {
                                     <Card.Body>
                                         <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='reg-content fs-1h'>
-                                        {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
+                                        {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
                                             <Link to={'newsdetails/'+item.id} 
                                             className='link'>
                                                 ...Read More
@@ -72,8 +83,8 @@ const News = () => {
                             <Card.Body>
                                 <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                 <Card.Text className='reg-content fs-1h'>
-                                {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,500)}
-                                            <Link to={'newsdetails/'+item.id} 
+                                {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
+                                <Link to={'newsdetails/'+item.id} 
                                             className='link'>
                                                 ...Read More
                                             </Link></Card.Text>

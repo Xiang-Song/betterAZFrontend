@@ -56,9 +56,11 @@ const SingleNews = () => {
                 null}
                 <div className='mt-5'>
                 {news.Textbody.split('\n').map((item, index)=>{
-                    return(
-                        <p key={index} className='text-indent reg-content'>{item}</p>
-                    )
+                    return( 
+                        item.match(/<http.*>/) ?
+                        <p key={index} className='text-indent reg-content'>{item.match(/.*?(?=<http|$)/i)[0]}<a href={item.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{item.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {item.match(/>(.*)/)[1]}</p>
+                        : <p key={index} className='text-indent reg-content'>{item}</p>
+                    ) 
                 })}
                 </div>
                 

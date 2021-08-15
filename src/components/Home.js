@@ -18,6 +18,18 @@ const Home = () => {
       })
     const checkdate = new Date(AZdate)
     checkdate.setDate(checkdate.getDate() -1 )
+
+    const formatDate = (oldDate) =>{
+        return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
+    }
+    const formatText = (txt, n) =>{
+        const shortTxt = txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '))
+        return (
+            shortTxt.match(/<http.*>/)
+            ? <>{shortTxt.match(/.*?(?=<http|$)/si)[0]}<a href={shortTxt.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{shortTxt.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {shortTxt.match(/>(.*)/s)[1]}</>
+            : <>{shortTxt}</>
+        )
+    }
     
     return (
         <div className='container-fluid pale-blue-bg pt-3 pt-lg-5'>
@@ -63,7 +75,7 @@ const Home = () => {
                                         <Card.Body>
                                             <Card.Title className='c-title'>{item.Headline}</Card.Title>
                                             <Card.Text className='reg-content fs-1h'>
-                                            {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
+                                            {formatDate(item.Date)} - {formatText(item.Textbody, 200)}
                                                 <Link to={'newsdetails/'+item.id} 
                                                 className='link'>
                                                     ...Read More
@@ -85,7 +97,7 @@ const Home = () => {
                                         <Card.Body>
                                             <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                             <Card.Text className='reg-content fs-1h'>
-                                            {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
+                                            {formatDate(item.Date)} - {formatText(item.Textbody, 200)}
                                                 <Link to={'newsdetails/'+item.id} 
                                                 className='link'>
                                                     ...Read More
@@ -99,11 +111,11 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                     <Card.Text className='reg-content fs-1h'>
-                                    {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]} - {item.Textbody.substring(0,200)}
-                                                <Link to={'newsdetails/'+item.id} 
-                                                className='link'>
-                                                    ...Read More
-                                                </Link></Card.Text>
+                                    {formatDate(item.Date)} - {formatText(item.Textbody, 200)}
+                                        <Link to={'newsdetails/'+item.id} 
+                                        className='link'>
+                                            ...Read More
+                                        </Link></Card.Text>
                                 </Card.Body>
                             </Card>
                             )
