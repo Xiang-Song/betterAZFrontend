@@ -3,19 +3,19 @@ import api from '../api/api'
 import './login.css'
 
 const Login = () => {
-    const date = new Date();
     const [isLogin, setIsLogin] = useState(false);
     const [inputValue, setInputValue] = useState({username: '', password:''});
     const [error, setError] = useState('');
     const [bannerInput, setBannerInput] = useState({headline: ''});
     const [newsInput, setNewsInput] = useState({headline: '', textbody:'', date: '', source: '', imageLink: '', videoLink: ''});
-    const [eventInput, setEventInput] = useState({headline: '', description: '', date: '', time: '', location: ''});
+    const [eventInput, setEventInput] = useState({headline: '', description: '', date: '', time: '', location: '', county: ''});
     const [locationInput, setLocationInput] = useState({location: '', address: '', hours: '', days: '', priority: '', county: '' });
     const [twitterInput, setTwitterInput] = useState({twitter: ''});
     const [fbInput, setFbInput] = useState({facebook: ''});
     const [banner, setBanner] = useState([{Headline: ''}]);
     const [news, setNews] = useState([]);
     const [events, setEvents] = useState([]);
+    const [eventError, setEventError] = useState('');
     const [locations, setLocations] = useState([]);
     const [twitter, setTwitter] = useState([{twitter:''}]);
     const [fb, setFb] = useState([{facebook:''}]);
@@ -237,19 +237,31 @@ const Login = () => {
         })
     }
 
+    const handleCountyInput = (e) => {
+        setEventInput({
+            ...eventInput,
+            county: e.target.value
+        })
+    }
+
     const handleEventSubmit = async ()=>{
-        let {headline, description, date, time, location} = eventInput;
-        let eventData = {Headline: headline, Description: description, Date: date, Time: time, Location: location};
+        let {headline, description, date, time, location, county} = eventInput;
+        let eventData = {Headline: headline, Description: description, Date: date, Time: time, Location: location, County: county};
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
-
-        try {
-            await api.post('/users/createEvent',eventData, axiosConfig);
-            setEventInput({headline: '', description: '', date: '', time: '', location: ''});
-            await getEvents();
-        } catch(error){
-            console.error(error.response.data)
+        if (eventData.Date !=='' && eventData.County !== ''){
+            try {
+                await api.post('/users/createEvent',eventData, axiosConfig);
+                setEventInput({headline: '', description: '', date: '', time: '', location: '', county: ''});
+                setEventError('')
+                await getEvents();
+            } catch(error){
+                console.error(error.response.data)
+            }
+        } else {
+            setEventError("please fill all required fields including date and county")
         }
+        
     }
 
     const handleLocationInput = (e) => {
@@ -419,6 +431,27 @@ const Login = () => {
                         <input className='input-field' placeholder='date' name='date' value={eventInput.date} onChange={handleEventInput} /><br />
                         <input className='input-field' placeholder='time' name='time' value={eventInput.time} onChange={handleEventInput} /><br />
                         <input className='input-field' placeholder='location' name='location' value={eventInput.location} onChange={handleEventInput} /><br />
+                        <label>Select County</label>
+                        <select value={eventInput.county} onChange={handleCountyInput}>
+                            <option value = ''> County </option>
+                            <option value='Maricopa'>Maricopa</option>
+                            <option value='Pima'>Pima</option>
+                            <option value='Apache'>Apache</option>
+                            <option value='Cochise'>Cochise</option>
+                            <option value='Coconino'>Coconino</option>
+                            <option value='Gila'>Gila</option>
+                            <option value='Graham'>Graham</option>
+                            <option value='Greenlee'>Greenlee</option>
+                            <option value='La Paz'>La Paz</option>
+                            <option value='Mohave'>Mohave</option>
+                            <option value='Navajo'>Navajo</option>
+                            <option value='Pinal'>Pinal</option>
+                            <option value='Santa Cruz'>Santa Cruz</option>
+                            <option value='Yavapai'>Yavapai</option>
+                            <option value='Yuma'>Yuma</option>
+                        </select>
+                        <br />
+                        {eventError ? <p style={{color: 'red'}}>{eventError}</p> : null}
                         <button onClick={handleEventSubmit}>Submit New Event</button>
                     </div>
                     <div className='current-list'>
