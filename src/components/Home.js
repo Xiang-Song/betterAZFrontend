@@ -16,8 +16,10 @@ const Home = () => {
     const AZdate = today.toLocaleString('en-us', {
         timeZone: 'America/Phoenix'
       })
-    const checkdate = new Date(AZdate)
-    checkdate.setDate(checkdate.getDate() -1 )
+    const tempdate = new Date(AZdate)
+    tempdate.setDate(tempdate.getDate() -1 )
+    const pureDate = tempdate.toDateString();
+    const checkdate = new Date(pureDate)
 
     const formatDate = (oldDate) =>{
         return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
@@ -174,7 +176,7 @@ const Home = () => {
                                     <Card key={item.id} className='border-none yellow-bg pad-l-5px mb-1 mb-lg-3'>
                                         <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Description}</Card.Text>
-                                        <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</Card.Text>
+                                        <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{formatDate(item.Date)}</Card.Text>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Time} @ {item.Location}</Card.Text>
                                         <Card.Text className='italic fs-1h dp-jc-center mb-1'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
                                     </Card>
