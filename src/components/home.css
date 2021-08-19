@@ -445,6 +445,27 @@
   .card .card-title {
     font-size: 3vw;
   }
+
+  .conuty-title {
+    display: flex;
+    justify-content: center;
+    font-size: 4vw;
+    font-weight: 900;
+  }
+
+  .toggle {
+    font-size: 3vw;
+  }
+
+  .link:hover {
+    cursor: pointer;
+    color: red;
+  }
+
+  .toggle:hover {
+    cursor: pointer;
+    color: black;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
@@ -512,5 +533,15 @@
 
   .card .card-title {
     font-size: 2.5vw;
+  }
+
+  .link:hover {
+    cursor: pointer;
+    color: red;
+  }
+
+  .toggle:hover {
+    cursor: pointer;
+    color: black;
   }
 }
