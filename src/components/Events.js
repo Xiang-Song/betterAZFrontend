@@ -83,12 +83,12 @@ const Events = () => {
                         return(
                             <Card key={item.id} className='border-bt w-bg mb-1 mb-lg-5'>
                                 <Card.Title className='dp-jc-center c-title mt-1 mt-lg-3'>{item.Headline}</Card.Title>
-                                <Card.Text className='light-content fs-1h mb-1'>
+                                <Card.Text className='light-content fs-1h mb-0'>
                                     <p className='dp-jc-center mb-1'>{item.Description}</p>
                                     <p className='dp-jc-center mb-1'>{formatDate(item.Date)}</p>
-                                    <p className='dp-jc-center'>{item.Time} @ {item.Location}</p>
+                                    <p className='dp-jc-center mb-0'>{item.Time} @ {item.Location}</p>
                                 </Card.Text>
-                                <Card.Text className='italic fs-1h dp-jc-center mb-1 mt-1'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
+                                <Card.Text className='italic fs-1h dp-jc-center mb-3 mb-lg-5 mt-0'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
                             </Card>
                         )
                     })}
