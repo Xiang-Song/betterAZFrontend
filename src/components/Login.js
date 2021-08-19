@@ -255,6 +255,7 @@ const Login = () => {
                 setEventInput({headline: '', description: '', date: '', time: '', location: '', county: ''});
                 setEventError('')
                 await getEvents();
+                console.log(events)
             } catch(error){
                 console.error(error.response.data)
             }
@@ -344,6 +345,36 @@ const Login = () => {
             console.error(error.response.data)
         }
     }
+
+    const sortCounty = (arr) => {
+        let result = [];
+        if (arr.indexOf('Maricopa') !== -1){
+            result[0] = 'Maricopa';
+            arr.splice(arr.indexOf('Maricopa'),1);
+        }
+        if (arr.indexOf('Pima') !== -1){
+            result.push('Pima');
+            arr.splice(arr.indexOf('Pima'),1);
+        }
+        arr.sort((a,b)=>(a > b) ? 1 : -1)
+        for (let i of arr){
+            result.push(i)
+        }
+        return result
+        }
+
+    const groupBy = (items, key) => items.reduce(
+        (result, item) => ({
+          ...result,
+          [item[key]]:[
+            ...(result[item[key]] || []),
+            item,
+          ]
+        }),
+        {},
+      );
+
+    const eventsByCounty = groupBy(events, 'County');
 
     if (!isLogin) {
         return (
@@ -455,16 +486,23 @@ const Login = () => {
                         <button onClick={handleEventSubmit}>Submit New Event</button>
                     </div>
                     <div className='current-list'>
-                        <label className='title'>Current Events List (Headline)</label>
-                        {events.sort((a, b) => (a.id > b.id) ? 1 : -1).map((item)=>{
-                            return <div key={item.id}>
-                                <div className='list-item'>
-                                <p className='list-item-content'>{item.Headline} @ {item.Date.split('T')[0].split('-')[1]}-{item.Date.split('T')[0].split('-')[2]}-{item.Date.split('T')[0].split('-')[0]}</p>
-                                <button className='list-item-button' onClick={()=>deleteEvent(item.id)}>delete this event</button>
-                                <p>Notary: <input type="checkbox" name="notary" value="notary" defaultChecked={item.notary} onChange={(e)=>handleNotaryChange(e, item.id)} /></p>
-                                <p>Petition: <input type="checkbox" name="petition" value="petition" defaultChecked={item.petition} onChange={(e)=>handlePetitionChange(e, item.id)} /></p>
-                                </div>
+                        <label className='title'>Current Events List (Headline, sorted by county then by date)</label>
+                        <hr />
+                        {sortCounty(Object.keys(eventsByCounty)).map((k, index)=>{
+                            return<div key={index}>
+                                <span style={{fontWeight: 'bolder'}}>{k}</span>
                                 <hr />
+                                {eventsByCounty[k].sort((a, b) => (a.Date > b.Date) ? 1 : -1).map((ev)=>{
+                                    return <div key={ev.id}>
+                                    <div className='list-item'>
+                                    <p className='list-item-content'>{ev.Headline} @ {ev.Date.split('T')[0].split('-')[1]}-{ev.Date.split('T')[0].split('-')[2]}-{ev.Date.split('T')[0].split('-')[0]}</p>
+                                    <button className='list-item-button' onClick={()=>deleteEvent(ev.id)}>delete this event</button>
+                                    <p>Notary: <input type="checkbox" name="notary" value="notary" defaultChecked={ev.notary} onChange={(e)=>handleNotaryChange(e, ev.id)} /></p>
+                                    <p>Petition: <input type="checkbox" name="petition" value="petition" defaultChecked={ev.petition} onChange={(e)=>handlePetitionChange(e, ev.id)} /></p>
+                                    </div>
+                                    <hr />
+                                    </div>
+                                })}
                                 </div>
                         })}
                     </div>
