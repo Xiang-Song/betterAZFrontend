@@ -177,8 +177,8 @@ const Home = () => {
                                         <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Description}</Card.Text>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{formatDate(item.Date)}</Card.Text>
-                                        <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Time} @ {item.Location}</Card.Text>
-                                        <Card.Text className='italic fs-1h dp-jc-center mb-1'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
+                                        <Card.Text className='reg-content fs-1h dp-jc-center mb-0'>{item.Time} @ {item.Location}</Card.Text>
+                                        <Card.Text className='italic fs-1h dp-jc-center mt-0 mb-1'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
                                     </Card>
                                 )
                             })}
