@@ -51,7 +51,8 @@ const Events = () => {
         {},
       );
 
-    const eventsByCounty = groupBy(state.events, 'County');
+    const eventsByCounty = groupBy(state.events.filter(e=>new Date(e.Date) > checkdate), 'County');
+    console.log(checkdate);
 
     return (
         <div className='w-bg wide-90 m-l-5vw'>
@@ -79,7 +80,7 @@ const Events = () => {
                         : <span className='mt-1 mt-lg-2 w-10vw dp-jc-end toggle' onClick={()=>setIsHide(isHide.filter((val, i)=> i !== isHide.indexOf(index)))}>Show</span>}   
                     </p>
                     <div className={isHide.indexOf(index) === -1 ? '' : 'hidden'}>
-                    {eventsByCounty[k].sort((a, b) => (a.Date > b.Date) ? 1 : -1).filter(e=>new Date(e.Date) > checkdate).map((item)=>{
+                    {eventsByCounty[k].sort((a, b) => (a.Date > b.Date) ? 1 : -1).map((item)=>{
                         return(
                             <Card key={item.id} className='border-bt w-bg mb-1 mb-lg-5'>
                                 <Card.Title className='dp-jc-center c-title mt-1 mt-lg-3'>{item.Headline}</Card.Title>
