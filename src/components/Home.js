@@ -148,7 +148,7 @@ const Home = () => {
                     </div>
                     <Button href="https://docs.google.com/spreadsheets/d/1RI9TI4f3EOexct1LujvoyoauHmelanS5lhWQyvJK5w8/edit?usp=sharing" target='_blank' variant="outline-danger" className='wide-100 mb-3 mb-lg-5 c-title'>See All Petition Depots</Button>
                     <h3 className = 'self-center s-title wg-bg'>What's on Our Social Media</h3>
-                    <div className=' w-bg mb-3 mb-lg-5'>
+                    <div className=' w-bg mb-1'>
                         <Row>
                             <Col xs={10} lg={10} className='pad-sm'>
                             <p><strong>Twitter</strong>: {state.twitter[0].twitter}</p>
