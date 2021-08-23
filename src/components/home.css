@@ -260,6 +260,10 @@
   margin-right: 5vw;
 }
 
+.m-r-1vw {
+  margin-right: 1vw;
+}
+
 .m-l-1vw {
   margin-left: 1vw;
 }
@@ -291,6 +295,11 @@
 .flow-column {
   flex-direction: column;
   justify-content: space-between;
+}
+
+.flow-column-end {
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .self-end {
@@ -353,13 +362,22 @@
   font-size: 0.8em;
 }
 
+.cp-text {
+  font-size: 0.8em;
+}
+
 .btn:focus {
   box-shadow: none;
 }
 
 .eventsQR {
+  width: 100%;
+  margin-right: 3px;
+}
+
+.eventsQRBox {
   width: 25%;
-  margin-left: 3px;
+  margin-right: 3px;
 }
 
 @media (max-width: 768px) {
@@ -436,6 +454,10 @@
     font-size: 4vw;
     font-weight: bolder;
     font-family: C-reg, sans-serif;
+  }
+
+  .cp-text {
+    font-size: 0.4em;
   }
 
   .navtab {

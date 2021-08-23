@@ -182,8 +182,14 @@ const Home = () => {
                                     </Card>
                                 )
                             })}
-                            <div><Link to='/events' className='link'>...MORE EVENTS</Link></div>
-                            <Image src={eventsQR} className='eventsQR mb-1 mb-lg-3'/>
+                            <div className='dp-jc-between m-r-1vw'>
+                                <div className='dp flow-column-end'><Link to='/events' className='link'>...MORE EVENTS</Link></div>
+                                <div className='eventsQRBox mb-1'>
+                                    <p className='dp-jc-center cp-text mb-0'>Southern AZ Events</p>
+                                    <a href='https://linktr.ee/TAGGAZ' target='_blank'><Image src={eventsQR} className='eventsQR mb-0'/></a>
+                                    <p className='dp-jc-center cp-text mb-0'>Scan or Click to open</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='dp-jc-space mt-2'>
