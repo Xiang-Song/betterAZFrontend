@@ -8,7 +8,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [bannerInput, setBannerInput] = useState({headline: ''});
     const [newsInput, setNewsInput] = useState({headline: '', textbody:'', date: '', source: '', imageLink: '', videoLink: ''});
-    const [eventInput, setEventInput] = useState({headline: '', description: '', date: '', time: '', location: '', county: ''});
+    const [eventInput, setEventInput] = useState({headline: '', description: '', date: '', time: '', location: '', county: '', streetNumber: '', streetName: '', city: '', lat: '', lng: ''});
     const [locationInput, setLocationInput] = useState({location: '', address: '', hours: '', days: '', priority: '', county: '' });
     const [twitterInput, setTwitterInput] = useState({twitter: ''});
     const [fbInput, setFbInput] = useState({facebook: ''});
@@ -245,14 +245,18 @@ const Login = () => {
     }
 
     const handleEventSubmit = async ()=>{
-        let {headline, description, date, time, location, county} = eventInput;
-        let eventData = {Headline: headline, Description: description, Date: date, Time: time, Location: location, County: county};
+        let {headline, description, date, time, location, county, streetNumber, streetName, city, lat, lng} = eventInput;
+        let eventData = {Headline: headline, Description: description, Date: date, Time: time, Location: location, County: county, StreetNumber: streetNumber, StreetName: streetName, City: city, Lat: lat, Lng: lng};
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
-        if (eventData.Date !=='' && eventData.County !== ''){
+        
+        if (eventData.Date !=='' 
+            && eventData.Headline !==''
+            && eventData.County !== '' 
+            && ((eventData.StreetName !=='' && eventData.StreetNumber !== '' && eventData.City !== '') || (eventData.Location !=='' && eventData.Lat !== '' && eventData.Lng !== ''))){
             try {
                 await api.post('/users/createEvent',eventData, axiosConfig);
-                setEventInput({headline: '', description: '', date: '', time: '', location: '', county: ''});
+                setEventInput({headline: '', description: '', date: '', time: '', location: '', county: '', streetNumber: '', streetName: '', city: '', lat: '', lng: ''});
                 setEventError('')
                 await getEvents();
                 console.log(events)
@@ -260,7 +264,7 @@ const Login = () => {
                 console.error(error.response.data)
             }
         } else {
-            setEventError("please fill all required fields including date and county")
+            setEventError("please fill all required fields(headline, date, County and fill one location combination), if you have question about location fields, please contact @ 'erickramer102@gmail.com' ")
         }
         
     }
@@ -457,12 +461,20 @@ const Login = () => {
                 <div className='section'>
                     <div className='new-input'>
                         <label className='title'>Add New Event</label><br /><br />
-                        <input className='input-field' placeholder='headline' name='headline' value={eventInput.headline} onChange={handleEventInput} /><br />
+                        <input className='input-field' placeholder='headline (required)' name='headline' value={eventInput.headline} onChange={handleEventInput} /><br />
                         <textarea className='input-text-field' placeholder='description' name='description' value={eventInput.description} onChange={handleEventInput} /><br />
-                        <input className='input-field' placeholder='date' name='date' value={eventInput.date} onChange={handleEventInput} /><br />
+                        <input className='input-field' placeholder='date (required)' name='date' value={eventInput.date} onChange={handleEventInput} /><br />
                         <input className='input-field' placeholder='time' name='time' value={eventInput.time} onChange={handleEventInput} /><br />
+                        <label style={{color: 'blue'}}>For the location, You need fill either all three fields for streetNumber, streetName, city or another three fields for location, latitude, longitude</label>
+                        <input className='input-field' placeholder='streetNumber' name='streetNumber' value={eventInput.streetNumber} onChange={handleEventInput} /><br />
+                        <input className='input-field' placeholder='streetName' name='streetName' value={eventInput.streetName} onChange={handleEventInput} /><br />
+                        <input className='input-field' placeholder='city' name='city' value={eventInput.city} onChange={handleEventInput} /><br />
+                        <p>OR</p>
                         <input className='input-field' placeholder='location' name='location' value={eventInput.location} onChange={handleEventInput} /><br />
-                        <label>Select County</label>
+                        <input className='input-field' placeholder='latitude' name='lat' value={eventInput.lat} onChange={handleEventInput} /><br />
+                        <input className='input-field' placeholder='longitude' name='lng' value={eventInput.lng} onChange={handleEventInput} /><br />
+                        <hr />
+                        <label>Select County, required</label>
                         <select value={eventInput.county} onChange={handleCountyInput}>
                             <option value = ''> County </option>
                             <option value='Maricopa'>Maricopa</option>
