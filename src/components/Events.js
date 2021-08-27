@@ -87,7 +87,7 @@ const Events = () => {
                                 <Card.Text className='light-content fs-1h mb-0'>
                                     <p className='dp-jc-center mb-1'>{item.Description}</p>
                                     <p className='dp-jc-center mb-1'>{formatDate(item.Date)}</p>
-                                    <p className='dp-jc-center mb-0'>{item.Time} @ {item.Location}</p>
+                                    <p className='dp-jc-center mb-0'>{item.Time} @ {item.Location || item.StreetNumber + ' ' + item.StreetName + ', ' + item.City}</p>
                                 </Card.Text>
                                 <Card.Text className='italic fs-1h dp-jc-center mb-3 mb-lg-5 mt-0'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
                             </Card>

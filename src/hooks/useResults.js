@@ -35,7 +35,21 @@ export default () => {
     const getEvents = async()=>{
         let res = await api.get('/events');
         if (res.status !== 200) {
-            setState(state=>({...state, events: [{Headline: '', Description: '', Date: '', Time: '', Location: '', notary: null, petition: null}]}))
+            setState(state=>(
+                {...state, 
+                    events: [{Headline: '', 
+                              Description: '', 
+                              Date: '', 
+                              Time: '', 
+                              Location: '', 
+                              notary: null, 
+                              petition: null,
+                              StreetNumber: '',
+                              StreetName: '',
+                              City: '',
+                              Lat: '',
+                              Lng: ''
+                            }]}))
         } else {
             let eventsList = [];
             for (let item of res.data){
