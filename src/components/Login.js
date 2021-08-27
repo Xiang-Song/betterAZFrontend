@@ -467,7 +467,7 @@ const Login = () => {
                         <input className='input-field' placeholder='time' name='time' value={eventInput.time} onChange={handleEventInput} /><br />
                         <label style={{color: 'blue'}}>For the location, You need fill either all three fields for streetNumber, streetName, city or another three fields for location, latitude, longitude</label>
                         <input className='input-field' placeholder='streetNumber' name='streetNumber' value={eventInput.streetNumber} onChange={handleEventInput} /><br />
-                        <input className='input-field' placeholder='streetName' name='streetName' value={eventInput.streetName} onChange={handleEventInput} /><br />
+                        <input className='input-field' placeholder='streetName, like "E Warner Rd"' name='streetName' value={eventInput.streetName} onChange={handleEventInput} /><br />
                         <input className='input-field' placeholder='city' name='city' value={eventInput.city} onChange={handleEventInput} /><br />
                         <p>OR</p>
                         <input className='input-field' placeholder='location' name='location' value={eventInput.location} onChange={handleEventInput} /><br />
