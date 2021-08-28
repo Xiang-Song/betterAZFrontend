@@ -244,9 +244,30 @@ const Login = () => {
         })
     }
 
+    const getEventsLocations = async (num, name, city) => {
+        let st = [];
+        let ct = []
+        st.push(num);
+        st.push(...name.split(' '));
+        let streetString = st.join('+') + ',';
+        ct.push(...city.split(' '));
+        let cityString = ct.join('+') + ',';
+        let addString = streetString+'+'+cityString+'+AZ'
+        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+addString+'&key=AIzaSyD4neQZLTHrPhfllrfnIzJNU1e4UwDRp6s');
+        const data = await response.json();
+        return data.results[0].geometry.location 
+}
+
     const handleEventSubmit = async ()=>{
+        
         let {headline, description, date, time, location, county, streetNumber, streetName, city, lat, lng} = eventInput;
         let eventData = {Headline: headline, Description: description, Date: date, Time: time, Location: location, County: county, StreetNumber: streetNumber, StreetName: streetName, City: city, Lat: lat, Lng: lng};
+        if(eventData.StreetName !=='' && eventData.StreetNumber !== '' && eventData.City !== ''){
+            const loc = await getEventsLocations(eventData.StreetName, eventData.StreetNumber, eventData.City);
+            eventData.Lat = loc.lat;
+            eventData.Lng = loc.lng;
+        }
+        console.log(eventData);
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         
@@ -259,7 +280,6 @@ const Login = () => {
                 setEventInput({headline: '', description: '', date: '', time: '', location: '', county: '', streetNumber: '', streetName: '', city: '', lat: '', lng: ''});
                 setEventError('')
                 await getEvents();
-                console.log(events)
             } catch(error){
                 console.error(error.response.data)
             }

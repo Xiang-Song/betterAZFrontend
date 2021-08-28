@@ -213,8 +213,12 @@
   font-size: 1.5vw;
 }
 
-.pad-icon {
+.pad-left-0 {
   padding-left: 0;
+}
+
+.pad-right-0 {
+  padding-right: 0;
 }
 
 .pad-l-5px {
@@ -288,8 +292,12 @@
   display: flex;
 }
 
-.align-bt {
+.align-ct {
   align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
 }
 
 .flow-column {
@@ -371,13 +379,23 @@
 }
 
 .eventsQR {
-  width: 100%;
+  width: 10vw;
   margin-right: 3px;
 }
 
 .eventsQRBox {
   width: 25%;
   margin-right: 3px;
+}
+
+.scrollable {
+  height: 100vh;
+  overflow: auto;
+}
+
+.home-map .google-map {
+  width: 100%;
+  height: 70vh;
 }
 
 @media (max-width: 768px) {
@@ -487,6 +505,11 @@
   .toggle:hover {
     cursor: pointer;
     color: black;
+  }
+
+  .home-map .google-map {
+    width: 100%;
+    height: 30vh;
   }
 }
 

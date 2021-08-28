@@ -5,13 +5,44 @@ import heading from '../image/heading.jpg'
 import capital_clouds from '../image/capital_clouds.jpg'
 import eventsQR from '../image/eventsQR.png'
 import useResults from '../hooks/useResults'
-import { SocialIcon } from 'react-social-icons';
+import { SocialIcon } from 'react-social-icons'
+import Map from './map/Map'
+import LocationPin from './map/LocationPin'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const Home = () => {
 
+    const location = {
+        address: '1600 Amphitheatre Parkway, Mountain View, california.',
+        lat: 33.48779,
+        lng: -112.05971
+    }
+
     const [state] = useResults();
+
+    const groupByLatLng = (items, k1, k2) => {
+        let result = {};
+        items.forEach((item)=>{
+          const key = item[k1] + '-' + item[k2]
+          if(result[key]){
+            result[key] = [...result[key], item]
+          } else {
+            result[key] = [item]
+          }
+        })
+        return result
+      };
+
+    const filterFirstDate = (obj) =>{
+    let result = [];
+    for (let k in obj){
+        obj[k].sort((a,b)=>a.id > b.id ? 1 : -1);
+        result.push(obj[k][0])
+      }
+    return result;
+    }
+    
     const today = new Date();
     const AZdate = today.toLocaleString('en-us', {
         timeZone: 'America/Phoenix'
@@ -20,6 +51,12 @@ const Home = () => {
     tempdate.setDate(tempdate.getDate() -1 )
     const pureDate = tempdate.toDateString();
     const checkdate = new Date(pureDate)
+
+    const sortedFilteredEvents = state.events.sort((a, b)=>(a.Date > b.Date) ? 1 : -1).filter(e=>new Date(e.Date) > checkdate);
+
+    const uniqueLatLngEvents = groupByLatLng(sortedFilteredEvents, 'Lat', 'Lng');
+
+    const locationListForMap = filterFirstDate(uniqueLatLngEvents);
 
     const formatDate = (oldDate) =>{
         return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
@@ -113,7 +150,7 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                     <Card.Text className='reg-content fs-1h'>
-                                    {formatDate(item.Date)} - {formatText(item.Textbody, 200)}
+                                    {formatDate(item.Date)} - {formatText(item.Textbody, 350)}
                                         <Link to={'newsdetails/'+item.id} 
                                         className='link'>
                                             ...Read More
@@ -136,7 +173,7 @@ const Home = () => {
                                 <Card key={index} className='border-none'>
                                     <Card.Title className='dp-jc-center c-title mt-4'>{item.Location}</Card.Title>
                                     <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>
-                                        HOURS: {item.Hours} | DAYS: {item.Days} | COUNTY: {item.County}
+                                        HOURS: {item.Hours} {item.Days ? ` | DAYS: ${item.Days}`: null} | COUNTY: {item.County}
                                     </Card.Text>
                                     <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>
                                         {item.Address}
@@ -153,7 +190,7 @@ const Home = () => {
                             <Col xs={10} lg={10} className='pad-sm'>
                             <p><strong>Twitter</strong>: {state.twitter[0].twitter}</p>
                             </Col>
-                            <Col xs={2} lg={2} className='dp align-bt pad-icon'>
+                            <Col xs={2} lg={2} className='dp align-ct pad-left-0 '>
                             <SocialIcon url='https://twitter.com/better_az?lang=en' target ='_blank' style={{height:35, width:35}}/>
                             </Col>
                         </Row>
@@ -161,7 +198,7 @@ const Home = () => {
                             <Col xs={10} lg={10} className='pad-sm'>
                             <p><strong>Facebook</strong>: {state.facebook[0].facebook}</p>
                             </Col>
-                            <Col xs={2} lg={2} className='dp align-bt pad-icon'>
+                            <Col xs={2} lg={2} className='dp align-ct pad-left-0 '>
                             <SocialIcon url='https://www.facebook.com/azdeservesbetter' target ='_blank' style={{height:35, width:35}}/>
                             </Col>
                         </Row>
@@ -171,25 +208,34 @@ const Home = () => {
                     <div>
                         <h3 className = 'self-center s-title wg-bg'>EVENTS</h3>
                         <div className='yellow-bg'>
-                            {state.events.sort((a, b)=>(a.Date > b.Date) ? 1 : -1).filter(e=>new Date(e.Date) > checkdate).slice(0,4).map((item)=>{
+                            <div className='home-map'>
+                                <Map defaultZoom={7}>
+                                    {locationListForMap.map((loc)=>{
+                                        return(
+                                            <LocationPin 
+                                                key={loc.id}
+                                                lat={loc.Lat}
+                                                lng={loc.Lng}
+                                                text={(loc.Location || (loc.StreetNumber+' '+loc.StreetName+','+loc.City)) + '. Next event at ' + formatDate(loc.Date) + ',' + loc.Time}
+                                            />
+                                        )
+                                    })}
+                                </Map>
+                            </div>
+                            {sortedFilteredEvents.slice(0,4).map((item)=>{
                                 return(
                                     <Card key={item.id} className='border-none yellow-bg pad-l-5px mb-1 mb-lg-3'>
                                         <Card.Title className='dp-jc-center c-title mt-3'>{item.Headline}</Card.Title>
-                                        <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{item.Description}</Card.Text>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-1'>{formatDate(item.Date)}</Card.Text>
                                         <Card.Text className='reg-content fs-1h dp-jc-center mb-0'>{item.Time} @ {item.Location || item.StreetNumber + ' ' + item.StreetName + ', ' + item.City}</Card.Text>
                                         <Card.Text className='italic fs-1h dp-jc-center mt-0 mb-1'>{item.notary ? <span>Notary</span> : null} {item.petition ? <span className="m-l-1vw">Petitions Available for Pick Up </span> : null}</Card.Text>
                                     </Card>
                                 )
                             })}
-                            <div className='dp-jc-between m-r-1vw'>
-                                <div className='dp flow-column-end'><Link to='/events' className='link'>...MORE EVENTS</Link></div>
-                                <div className='eventsQRBox mb-1'>
-                                    <p className='dp-jc-center cp-text mb-0'>Southern AZ Events</p>
-                                    <a href='https://linktr.ee/TAGGAZ' target='_blank'><Image src={eventsQR} className='eventsQR mb-0'/></a>
-                                    <p className='dp-jc-center cp-text mb-0'>Scan or Click to open</p>
-                                </div>
-                            </div>
+                            
+                            <div><Link to='/events' className='link'>...MORE DETAILS AND MORE EVENTS</Link></div>
+                            
+                            
                         </div>
                     </div>
                     <div className='dp-jc-space mt-2'>
@@ -198,9 +244,14 @@ const Home = () => {
                     </div>
                 </Col>
             </Row>
+            <div className='mt-3 mb-1 pad-l-5vw-r-1vw dp align-end'>
+                <a href='https://linktr.ee/TAGGAZ' target='_blank'><Image src={eventsQR} className='eventsQR mb-0'/></a>
+                <p className='mb-0'>Click or Scan to view more Southern AZ events</p>
+            </div>
+
             <footer>
-                <Row className='ft-row mt-1 mt-lg-5 pb-1 pb-lg-5'>
-                <hr className='ft-hr mt-3 mt-lg-5 mb-3 mb-lg-5'/>
+                <Row className='ft-row mt-1 pb-1 pb-lg-5'>
+                <hr className='ft-hr mt-3 mb-3'/>
                     <Col xs={10} lg ={10} className='ft-col-l'>
                         <p className='ft-text'>Copyright © 2021 Arizona Deserves Better - All Rights Reserved.</p>
                     </Col>
