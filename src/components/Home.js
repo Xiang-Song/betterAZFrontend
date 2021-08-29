@@ -8,16 +8,11 @@ import useResults from '../hooks/useResults'
 import { SocialIcon } from 'react-social-icons'
 import Map from './map/Map'
 import LocationPin from './map/LocationPin'
+import SignPin from './map/SingPin'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
 const Home = () => {
-
-    const location = {
-        address: '1600 Amphitheatre Parkway, Mountain View, california.',
-        lat: 33.48779,
-        lng: -112.05971
-    }
 
     const [state] = useResults();
 
@@ -57,6 +52,8 @@ const Home = () => {
     const uniqueLatLngEvents = groupByLatLng(sortedFilteredEvents, 'Lat', 'Lng');
 
     const locationListForMap = filterFirstDate(uniqueLatLngEvents);
+
+    const signLocationListForMap = state.locations.filter(item=>(item.Lat !=='' && item.Lat !==''));
 
     const formatDate = (oldDate) =>{
         return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
@@ -208,7 +205,7 @@ const Home = () => {
                     <div>
                         <h3 className = 'self-center s-title wg-bg'>EVENTS</h3>
                         <div className='yellow-bg'>
-                            <div className='home-map'>
+                            <div className='home-map mb-0'>
                                 <Map defaultZoom={7}>
                                     {locationListForMap.map((loc)=>{
                                         return(
@@ -220,9 +217,20 @@ const Home = () => {
                                             />
                                         )
                                     })}
+                                    {signLocationListForMap.map((item)=>{
+                                        return(
+                                            <SignPin 
+                                                key={item.id}
+                                                lat={item.Lat}
+                                                lng={item.Lng}
+                                                text={item.Location +', '+item.Address+' on'+item.Hours+' @'+item.Days}
+                                            />
+                                        )
+                                    })}
                                 </Map>
                                 <p className='enlargeIcon'>Click to enlarge</p>
                             </div>
+                            <div className='dp-jc-start mt-0'><LocationPin /> <span>: event locations</span><span style={{width:'50px'}}></span><SignPin /><span>: signing locations</span></div>
                             <div><Link to='/events' className='link'>...MORE DETAILS AND MORE EVENTS</Link></div>
                             {sortedFilteredEvents.slice(0,4).map((item)=>{
                                 return(

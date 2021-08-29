@@ -9,7 +9,7 @@ const Login = () => {
     const [bannerInput, setBannerInput] = useState({headline: ''});
     const [newsInput, setNewsInput] = useState({headline: '', textbody:'', date: '', source: '', imageLink: '', videoLink: ''});
     const [eventInput, setEventInput] = useState({headline: '', description: '', date: '', time: '', location: '', county: '', streetNumber: '', streetName: '', city: '', lat: '', lng: ''});
-    const [locationInput, setLocationInput] = useState({location: '', address: '', hours: '', days: '', priority: '', county: '' });
+    const [locationInput, setLocationInput] = useState({location: '', address: '', hours: '', days: '', priority: '', county: '', lat: '', lng: '' });
     const [twitterInput, setTwitterInput] = useState({twitter: ''});
     const [fbInput, setFbInput] = useState({facebook: ''});
     const [banner, setBanner] = useState([{Headline: ''}]);
@@ -299,13 +299,13 @@ const Login = () => {
     }
 
     const handleLocationSubmit = async() => {
-        let {location, address, hours, days, priority, county} = locationInput;
-        let locationData = {Location: location, Address: address, Hours: hours, Days: days, Priority: priority, County: county}
+        let {location, address, hours, days, priority, county, lat, lng} = locationInput;
+        let locationData = {Location: location, Address: address, Hours: hours, Days: days, Priority: priority, County: county, Lat: lat, Lng: lng}
         let token = localStorage.getItem('JWT');
         let axiosConfig = {headers: {Authorization: "JWT " + token}};
         try {
             await api.post('/users/createLocation',locationData, axiosConfig);
-            setLocationInput({location: '', address: '', hours: '', days: '', priority: '', county: '' });
+            setLocationInput({location: '', address: '', hours: '', days: '', priority: '', county: '', lat: '', lng: ''});
             await getLocations();
         } catch(error){
             console.error(error.response.data)
@@ -550,7 +550,10 @@ const Login = () => {
                         <input className='input-field' placeholder='hours' name='hours' value={locationInput.hours} onChange={handleLocationInput} /><br />
                         <input className='input-field' placeholder='days' name='days' value={locationInput.days} onChange={handleLocationInput} /><br />
                         <input className='input-field' placeholder='priority' name='priority' value={locationInput.priority} onChange={handleLocationInput} /><br />
-                        <input className='input-field' placeholder='county' name='county' value={locationInput.county} onChange={handleLocationInput} /><br />
+                        <input className='input-field' placeholder='county' name='county' value={locationInput.county} onChange={handleLocationInput} /><br /><br />
+                        <label style={{fontStyle: 'italic'}}>Add latitude and longitude to show locations on the map</label>
+                        <input className='input-field' placeholder='latitude' name='lat' value={locationInput.lat} onChange={handleLocationInput} /><br />
+                        <input className='input-field' placeholder='longitude' name='lng' value={locationInput.lng} onChange={handleLocationInput} /><br />
                         <button onClick={handleLocationSubmit}>Submit New Event</button>
                     </div>
                     <div className='current-list'>
