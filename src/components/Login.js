@@ -30,6 +30,8 @@ const Login = () => {
         getFacebook();
     },[])
 
+    const { REACT_APP_google_key } = process.env
+
     const getBanner = async() => {
         let res = await api.get('/banner');
         if (res.status !== 200) {
@@ -253,7 +255,7 @@ const Login = () => {
         ct.push(...city.split(' '));
         let cityString = ct.join('+') + ',';
         let addString = streetString+'+'+cityString+'+AZ'
-        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+addString+'&key=AIzaSyD4neQZLTHrPhfllrfnIzJNU1e4UwDRp6s');
+        const response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+addString+REACT_APP_google_key);
         const data = await response.json();
         return data.results[0].geometry.location 
 }

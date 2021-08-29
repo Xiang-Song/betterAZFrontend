@@ -9,6 +9,7 @@ import { BAProvider } from './context/BAcontext'
 
 import './App.css'
 
+
 const App = () => {
   return (
     <div>

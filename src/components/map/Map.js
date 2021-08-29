@@ -1,7 +1,6 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react'
 
-
 import './map.css'
 
 const center = {
@@ -9,11 +8,13 @@ const center = {
     lng: -112.05971
 }
 
+const { REACT_APP_google_key } = process.env
+
 const Map = ({ children, ...props }) => {
     return (
         <div className='google-map'>
             <GoogleMapReact
-              bootstrapURLKeys = {{key: 'AIzaSyD4neQZLTHrPhfllrfnIzJNU1e4UwDRp6s'}}
+              bootstrapURLKeys = {{key: REACT_APP_google_key}}
               defaultCenter={center}
               {...props}
             >

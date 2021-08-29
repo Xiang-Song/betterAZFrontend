@@ -223,6 +223,7 @@ const Home = () => {
                                 </Map>
                                 <p className='enlargeIcon'>Click to enlarge</p>
                             </div>
+                            <div><Link to='/events' className='link'>...MORE DETAILS AND MORE EVENTS</Link></div>
                             {sortedFilteredEvents.slice(0,4).map((item)=>{
                                 return(
                                     <Card key={item.id} className='border-none yellow-bg pad-l-5px mb-1 mb-lg-3'>
