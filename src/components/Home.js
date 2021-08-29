@@ -221,6 +221,7 @@ const Home = () => {
                                         )
                                     })}
                                 </Map>
+                                <p className='enlargeIcon'>Click to enlarge</p>
                             </div>
                             {sortedFilteredEvents.slice(0,4).map((item)=>{
                                 return(

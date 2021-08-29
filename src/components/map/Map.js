@@ -1,11 +1,8 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react'
-import { BsGeoAlt } from 'react-icons/bs'
-import { IconContext } from 'react-icons'
+
 
 import './map.css'
-
-
 
 const center = {
     lat: 33.68779,
