@@ -66,7 +66,7 @@ const Home = () => {
             : <>{shortTxt}</>
         )
     }
-    
+
     return (
         <div className='container-fluid pale-blue-bg pt-3 pt-lg-5'>
             <Alert variant='light w-bg' >
@@ -186,7 +186,12 @@ const Home = () => {
                     <div className=' w-bg mb-1'>
                         <Row>
                             <Col xs={10} lg={10} className='pad-sm'>
-                            <p><strong>Twitter</strong>: {state.twitter[0].twitter}</p>
+                            <p><strong>Twitter</strong>: {
+                            state.twitter[0].twitter
+                            .match(/<http.*>/) ?
+                        <span className='text-indent reg-content'>{state.twitter[0].twitter.match(/.*?(?=<http|$)/i)[0]}<a href={state.twitter[0].twitter.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{state.twitter[0].twitter.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {state.twitter[0].twitter.match(/>(.*)/)[1]}</span>
+                        : <span className='text-indent reg-content'>{state.twitter[0].twitter}</span>
+                            }</p>
                             </Col>
                             <Col xs={2} lg={2} className='dp align-ct pad-left-0 '>
                             <SocialIcon url='https://twitter.com/better_az?lang=en' target ='_blank' style={{height:35, width:35}}/>
@@ -194,7 +199,12 @@ const Home = () => {
                         </Row>
                         <Row>
                             <Col xs={10} lg={10} className='pad-sm'>
-                            <p><strong>Facebook</strong>: {state.facebook[0].facebook}</p>
+                            <p><strong>Facebook</strong>: {
+                            state.facebook[0].facebook
+                            .match(/<http.*>/) ?
+                        <span className='text-indent reg-content'>{state.facebook[0].facebook.match(/.*?(?=<http|$)/i)[0]}<a href={state.facebook[0].facebook.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{state.facebook[0].facebook.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {state.facebook[0].facebook.match(/>(.*)/)[1]}</span>
+                        : <span className='text-indent reg-content'>{state.facebook[0].facebook}</span>
+                            }</p>
                             </Col>
                             <Col xs={2} lg={2} className='dp align-ct pad-left-0 '>
                             <SocialIcon url='https://www.facebook.com/azdeservesbetter' target ='_blank' style={{height:35, width:35}}/>
@@ -224,7 +234,7 @@ const Home = () => {
                                                 key={item.id}
                                                 lat={item.Lat}
                                                 lng={item.Lng}
-                                                text={item.Location +', '+item.Address+' on'+item.Hours+' @'+item.Days}
+                                                text={'SIGNING---'+item.Location +', '+item.Address+' on'+item.Hours+' @'+item.Days}
                                             />
                                         )
                                     })}

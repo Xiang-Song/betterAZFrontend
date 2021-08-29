@@ -5,6 +5,7 @@ import {Image, Row, Col, Card} from 'react-bootstrap'
 import { BiFolderPlus, BiFolderMinus } from 'react-icons/bi'
 import Map from './map/Map'
 import LocationPin from './map/LocationPin'
+import SignPin from './map/SingPin'
 import heading from '../image/heading.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
@@ -49,6 +50,8 @@ const Events = () => {
     const uniqueLatLngEvents = groupByLatLng(sortedFilteredEvents, 'Lat', 'Lng');
 
     const locationListForMap = filterFirstDate(uniqueLatLngEvents);
+
+    const signLocationListForMap = state.locations.filter(item=>(item.Lat !=='' && item.Lat !==''));
 
     const formatDate = (oldDate) =>{
         return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
@@ -139,9 +142,19 @@ const Events = () => {
                                     />
                                 )
                             })}
+                            {signLocationListForMap.map((item)=>{
+                                        return(
+                                            <SignPin 
+                                                key={item.id}
+                                                lat={item.Lat}
+                                                lng={item.Lng}
+                                                text={'SIGNING---'+item.Location +', '+item.Address+' on'+item.Hours+' @'+item.Days}
+                                            />
+                                        )
+                                    })}
                         </Map>
                     </div>
-
+                    <div className='dp-jc-start mt-0'><LocationPin /> <span>: event locations</span><span style={{width:'50px'}}></span><SignPin /><span>: signing locations</span></div>
                  </Col>  
             </Row>
                     <div><Link to='/' className='link pad-l-5px'>Back to Home</Link></div>
