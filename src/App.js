@@ -5,6 +5,7 @@ import News from './components/News'
 import SingleNews from './components/SingleNews'
 import Events from "./components/Events"
 import Locations from './components/Locations'
+import Bill from './components/Bill'
 import { BAProvider } from './context/BAcontext'
 
 import './App.css'
@@ -18,6 +19,7 @@ const App = () => {
       <Switch>
       <Route path="/admin" component={Login} />
       <Route exact path="/" component={Home} />
+      <Route path="/bills" component={Bill} />
       <Route path="/news" component={News} />
       <Route path="/newsdetails/:id" component={SingleNews} />
       <Route path="/events" component={Events} />

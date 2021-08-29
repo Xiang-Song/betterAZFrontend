@@ -89,6 +89,7 @@ const Home = () => {
                         <p className='reg-content fs-1h text-indent'>The Arizona legislature of a century ago gave us the tools to fight back.</p>
                         <p className='reg-content fs-1h text-indent'>Unlike other states whose legislatures are also passing bills to curtail voting rights, Arizona has a constitution that allows the voters themselves either to veto or uphold bills passed by the Legislature and signed by the Governor.</p>
                         <p className='reg-content fs-1h text-indent'>Arizona Deserves Better is organizing a referendum effort to repeal these laws. With your help, we can gather 118,000 signatures in 90 days. Arizonans have stopped unpopular laws before and we can do it again, but we can’t do it without you.</p>
+                        <div ><Link to='/bills' className='link'>...Details on the Bills</Link></div>
                     </div>
                     <div className='dp-jc-space'>
                         <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='wide-45'>Volunteer</Button>
@@ -147,7 +148,7 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                     <Card.Text className='reg-content fs-1h'>
-                                    {formatDate(item.Date)} - {formatText(item.Textbody, 350)}
+                                    {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
                                         <Link to={'newsdetails/'+item.id} 
                                         className='link'>
                                             ...Read More
