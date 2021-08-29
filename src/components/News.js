@@ -83,7 +83,7 @@ const News = () => {
                             <Card.Body>
                                 <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                 <Card.Text className='reg-content fs-1h'>
-                                {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
+                                {formatDate(item.Date)} - {formatText(item.Textbody, 700)}
                                 <Link to={'newsdetails/'+item.id} 
                                             className='link'>
                                                 ...Read More
