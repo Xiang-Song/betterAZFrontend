@@ -194,7 +194,7 @@ const Home = () => {
                             }</p>
                             </Col>
                             <Col xs={2} lg={2} className='dp align-ct pad-left-0 '>
-                            <SocialIcon url='https://twitter.com/better_az?lang=en' target ='_blank' style={{height:35, width:35}}/>
+                            <SocialIcon url='https://twitter.com/arizona_better' target ='_blank' style={{height:35, width:35}}/>
                             </Col>
                         </Row>
                         <Row>
