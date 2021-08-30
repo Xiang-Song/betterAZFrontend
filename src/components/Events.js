@@ -102,8 +102,8 @@ const Events = () => {
                 </Row>
             </Card>
             <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3 mb-3 mb-lg-5'>All Future Events</h2>
-            <Row>
-                <Col xs={12} lg={4} className='scrollable'>
+            <Row className='events-container'>
+                <Col xs={12} lg={4} className='scrollable events-list-container'>
                     {sortCounty(Object.keys(eventsByCounty)).map((k, index)=> {
                         return <div key={index}>
                             <p className='dp-jc-between mb-0'>
@@ -129,7 +129,7 @@ const Events = () => {
                         </div>
                     })}
                  </Col> 
-                 <Col xs={12} lg={8}>
+                 <Col xs={12} lg={8} className='events-map-container'>
                     <div className='event-map'>
                         <Map defaultZoom={8}>
                             {locationListForMap.map((loc)=>{
@@ -154,7 +154,7 @@ const Events = () => {
                                     })}
                         </Map>
                     </div>
-                    <div className='dp-jc-start mt-0'><LocationPin /> <span>: event locations</span><span style={{width:'50px'}}></span><SignPin /><span>: signing locations</span></div>
+                    <div className='dp-jc-start mt-0 legend'><LocationPin /> <span>: event locations</span><span style={{width:'50px'}}></span><SignPin /><span>: signing locations</span></div>
                  </Col>  
             </Row>
                     <div><Link to='/' className='link pad-l-5px'>Back to Home</Link></div>

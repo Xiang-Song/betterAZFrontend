@@ -241,7 +241,7 @@ const Home = () => {
                                 </Map>
                                 <p className='enlargeIcon'>Click to enlarge</p>
                             </div>
-                            <div className='dp-jc-start mt-0'><LocationPin /> <span>: event locations</span><span style={{width:'50px'}}></span><SignPin /><span>: signing locations</span></div>
+                            <div className='dp-jc-start mt-0 legend'><LocationPin /> <span>: event locations</span><span style={{width:'50px'}}></span><SignPin /><span>: signing locations</span></div>
                             <div><Link to='/events' className='link'>...MORE DETAILS AND MORE EVENTS</Link></div>
                             {sortedFilteredEvents.slice(0,4).map((item)=>{
                                 return(
