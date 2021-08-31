@@ -432,6 +432,15 @@
   cursor: auto;
 }
 
+.break-word {
+  word-wrap: break-word;
+}
+
+.higher {
+  position: absolute;
+  bottom: 5px;
+}
+
 @media (max-width: 768px) {
   .ab-right-up {
     top: 1vw;

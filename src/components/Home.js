@@ -181,34 +181,27 @@ const Home = () => {
                         })}
                         <div><Link to='/locations' className='link'>...MORE LOCATIONS</Link></div>
                     </div>
+                    
                     <Button href="https://docs.google.com/spreadsheets/d/1RI9TI4f3EOexct1LujvoyoauHmelanS5lhWQyvJK5w8/edit?usp=sharing" target='_blank' variant="outline-danger" className='wide-100 mb-3 mb-lg-5 c-title'>See All Petition Depots</Button>
+
                     <h3 className = 'self-center s-title wg-bg'>What's on Our Social Media</h3>
                     <div className=' w-bg mb-1'>
-                        <Row>
-                            <Col xs={10} lg={10} className='pad-sm'>
-                            <p><strong>Twitter</strong>: {
-                            state.twitter[0].twitter
-                            .match(/<http.*>/) ?
-                        <span className='text-indent reg-content'>{state.twitter[0].twitter.match(/.*?(?=<http|$)/i)[0]}<a href={state.twitter[0].twitter.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{state.twitter[0].twitter.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {state.twitter[0].twitter.match(/>(.*)/)[1]}</span>
+                        
+                        <Row className='pad-sm'> 
+                        <p className='mb-0'> 
+                        <SocialIcon url='https://twitter.com/arizona_better' target ='_blank' style={{height:35, width:35, marginRight: '20px'}}  className='higher'/>
+                        {state.twitter[0].twitter.match(/<http.*>/) ?
+                        <span className='text-indent reg-content'>{state.twitter[0].twitter.match(/.*?(?=<http|$)/i)[0]}<a href={state.twitter[0].twitter.match(/<http.*>/)[0].slice(1,-1)} target='_blank' className='break-word'>{state.twitter[0].twitter.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {state.twitter[0].twitter.match(/>(.*)/)[1]}</span>
                         : <span className='text-indent reg-content'>{state.twitter[0].twitter}</span>
-                            }</p>
-                            </Col>
-                            <Col xs={2} lg={2} className='dp align-ct pad-left-0 '>
-                            <SocialIcon url='https://twitter.com/arizona_better' target ='_blank' style={{height:35, width:35}}/>
-                            </Col>
+                        }</p>
                         </Row>
-                        <Row>
-                            <Col xs={10} lg={10} className='pad-sm'>
-                            <p><strong>Facebook</strong>: {
-                            state.facebook[0].facebook
-                            .match(/<http.*>/) ?
-                        <span className='text-indent reg-content'>{state.facebook[0].facebook.match(/.*?(?=<http|$)/i)[0]}<a href={state.facebook[0].facebook.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{state.facebook[0].facebook.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {state.facebook[0].facebook.match(/>(.*)/)[1]}</span>
+                        <Row className='pad-sm'> 
+                        <p> 
+                        <SocialIcon url='https://www.facebook.com/azdeservesbetter' target ='_blank' style={{height:35, width:35, marginRight: '20px'}} className='higher'/>
+                        {state.facebook[0].facebook.match(/<http.*>/) ?
+                        <span className='text-indent reg-content'>{state.facebook[0].facebook.match(/.*?(?=<http|$)/i)[0]}<a href={state.facebook[0].facebook.match(/<http.*>/)[0].slice(1,-1)} target='_blank' className='break-word'>{state.facebook[0].facebook.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {state.facebook[0].facebook.match(/>(.*)/)[1]}</span>
                         : <span className='text-indent reg-content'>{state.facebook[0].facebook}</span>
-                            }</p>
-                            </Col>
-                            <Col xs={2} lg={2} className='dp align-ct pad-left-0 '>
-                            <SocialIcon url='https://www.facebook.com/azdeservesbetter' target ='_blank' style={{height:35, width:35}}/>
-                            </Col>
+                        }</p>
                         </Row>
                     </div>
                 </Col>
