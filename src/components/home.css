@@ -480,6 +480,11 @@
     padding: 1vw 1vw 1vw 5vw;
   }
 
+  .eventsQR {
+    width: 25vw;
+    margin-right: 3px;
+  }
+
   .img-embed {
     width: 70vw;
     height: 38vw;

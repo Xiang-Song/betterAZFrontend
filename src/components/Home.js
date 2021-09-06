@@ -165,7 +165,7 @@ const Home = () => {
             <Row>
                 <Col xs={12} lg={6} className='pad-l-5vw-r-1vw mt-3 mt-lg-5'>
                     <h3 className = 'self-center s-title wg-bg'>WHERE TO SIGN?</h3>
-                    <div className=' w-bg mb-1 mb-lg-3'>
+                    <div className=' w-bg mb-1 mb-lg-3 pb-2'>
                         {state.locations.sort((a, b)=>(a.Priority < b.Priority) ? 1 : -1).slice(0,5).map((item, index)=>{
                             return(
                                 <Card key={index} className='border-none'>
@@ -180,6 +180,12 @@ const Home = () => {
                             )
                         })}
                         <div><Link to='/locations' className='link'>...MORE LOCATIONS</Link></div>
+                        <div className='mt-3'>
+                        <p className='dp-jc-center c-title mt-4'>ALSO AVAILABLE AT:</p> 
+                        <div className='dp-jc-center'>
+                        <Button href='https://secure.everyaction.com/JfF1jCxenEa1kYCqxH7BeA2' target='_blank' variant="danger" className='wide-45'>Arrange to Sign At Home</Button>
+                        </div>  
+                        </div>
                     </div>
                     
                     <Button href="https://docs.google.com/spreadsheets/d/1RI9TI4f3EOexct1LujvoyoauHmelanS5lhWQyvJK5w8/edit?usp=sharing" target='_blank' variant="outline-danger" className='wide-100 mb-3 mb-lg-5 c-title'>See All Petition Depots</Button>
@@ -246,8 +252,14 @@ const Home = () => {
                                     </Card>
                                 )
                             })}
-                            
-                            <div><Link to='/events' className='link'>...MORE DETAILS AND MORE EVENTS</Link></div>
+                            <div className='dp-jc-between align-end'>
+                                <div><Link to='/events' className='link'>...MORE DETAILS AND MORE EVENTS</Link></div>
+                                <div className='m-r-1vw mb-1 ft-text'>
+                                    <p className='mb-0'>click/scan to view</p>
+                                    <a href='https://linktr.ee/TAGGAZ' target='_blank'><Image src={eventsQR} className='eventsQR mb-0'/></a>
+                                    <p className='mb-0'>Southern AZ events</p>
+                                </div>
+                            </div>
                             
                             
                         </div>
@@ -258,10 +270,6 @@ const Home = () => {
                     </div>
                 </Col>
             </Row>
-            <div className='mt-3 mb-1 pad-l-5vw-r-1vw dp align-end'>
-                <a href='https://linktr.ee/TAGGAZ' target='_blank'><Image src={eventsQR} className='eventsQR mb-0'/></a>
-                <p className='mb-0'>Click or Scan to view more Southern AZ events</p>
-            </div>
 
             <footer>
                 <Row className='ft-row mt-1 pb-1 pb-lg-5'>
