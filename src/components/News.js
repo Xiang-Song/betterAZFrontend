@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import useResults from '../hooks/useResults'
 import {Image, Row, Col, Card} from 'react-bootstrap'
 import heading from '../image/heading.jpg'
+import UrlLinkedTxt from './UrlLinkedTxt'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
@@ -11,13 +13,17 @@ const News = () => {
     const formatDate = (oldDate) =>{
         return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
     }
-    const formatText = (txt, n, date) =>{
-        const shortTxt = txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '));
-        return (
-            shortTxt.match(/<http.*>/)
-            ? <>{shortTxt.match(/.*?(?=<http|$)/si)[0]}<a href={shortTxt.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{shortTxt.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {shortTxt.match(/>(.*)/s)[1]}</>
-            : <>{shortTxt}</>
-        )
+    // const formatText = (txt, n, date) =>{
+    //     const shortTxt = txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '));
+    //     return (
+    //         shortTxt.match(/<http.*>/)
+    //         ? <>{shortTxt.match(/.*?(?=<http|$)/si)[0]}<a href={shortTxt.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{shortTxt.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {shortTxt.match(/>(.*)/s)[1]}</>
+    //         : <>{shortTxt}</>
+    //     )
+    // }
+
+    const formatText = (txt, n) =>{
+        return txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '));
     }
     return (
         <div className='w-bg wide-90 m-l-5vw'>
@@ -47,7 +53,7 @@ const News = () => {
                                     <Card.Body>
                                         <Card.Title className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='reg-content fs-1h'>
-                                        {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
+                                        {formatDate(item.Date)} - <UrlLinkedTxt str={formatText(item.Textbody, 500)}/>
                                             <Link to={'newsdetails/'+item.id} 
                                             className='link'>
                                                 ...Read More
@@ -69,7 +75,7 @@ const News = () => {
                                     <Card.Body>
                                         <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                         <Card.Text className='reg-content fs-1h'>
-                                        {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
+                                        {formatDate(item.Date)} - <UrlLinkedTxt str={formatText(item.Textbody, 500)}/>
                                             <Link to={'newsdetails/'+item.id} 
                                             className='link'>
                                                 ...Read More
@@ -83,7 +89,7 @@ const News = () => {
                             <Card.Body>
                                 <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                 <Card.Text className='reg-content fs-1h'>
-                                {formatDate(item.Date)} - {formatText(item.Textbody, 700)}
+                                {formatDate(item.Date)} - <UrlLinkedTxt str={formatText(item.Textbody, 500)}/>
                                 <Link to={'newsdetails/'+item.id} 
                                             className='link'>
                                                 ...Read More

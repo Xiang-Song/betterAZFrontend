@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react'
 import { Link, useParams } from 'react-router-dom'
 import api from '../api/api'
 import {Image, Row, Col, Card} from 'react-bootstrap'
+import UrlLinkedTxt from './UrlLinkedTxt'
 import heading from '../image/heading.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
+
 
 const SingleNews = () => {
     const [news, setNews] = useState({Headline: '', Textbody:'', Date: '', Source: '', ImageLink: '', VideoLink: '', error:''})
@@ -21,9 +23,38 @@ const SingleNews = () => {
         }
         getNewsDetailById();
     }, [])
+
+    // const urlRegex = /(<http?[^\s]+)|(www?[^\s]+)/gi ;
+
+    // const UrlLinkedTxt = ({str}) =>{
+    //     if(str.match(/<http.*>/)){
+    //         const regex = str.match(urlRegex);
+    //         const shownLink = [];
+    //         const hrefLink = [];
+    //         let plainTxt = [];
+    //         let start = 0;
+    //         for (let i of regex){
+    //             shownLink.push(i.match(/<http.*>/)[0].split('//')[1].slice(0,-1))
+    //             hrefLink.push(i.match(/<http.*>/)[0].slice(1,-1))
+    //             plainTxt.push(str.slice(start, str.indexOf(i)));
+    //             start = str.indexOf(i) + i.length -1;
+    //         }
+    //         plainTxt.push(str.slice(start, ));
+            
+    //         return(<p className='text-indent reg-content'>
+    //             {plainTxt.map((item, index)=>{
+    //                 return(
+    //                     <span>{item}{regex[index] 
+    //                         ? <a href={hrefLink[index]} target='_blank'>{shownLink[index]}</a> 
+    //                         : null}</span>
+    //                 )
+    //             })}
+    //         </p>)
+    //     } else {
+    //         return <p className='text-indent reg-content'>{str}</p>
+    //     }
+    // }
     
-    
-  
     return (
         <div className = 'wide-90 m-l-5vw'>
             <Card className= 'relative border-none mt-3'>
@@ -56,11 +87,9 @@ const SingleNews = () => {
                 null}
                 <div className='mt-5'>
                 {news.Textbody.split('\n').map((item, index)=>{
-                    return( 
-                        item.match(/<http.*>/) ?
-                        <p key={index} className='text-indent reg-content'>{item.match(/.*?(?=<http|$)/i)[0]}<a href={item.match(/<http.+?>/)[0].slice(1,-1)} target='_blank'>{item.match(/<http.+?>/)[0].split('//')[1].slice(0,-1)}</a> {item.match(/>(.*)/)[1]}</p>
-                        : <p key={index} className='text-indent reg-content'>{item}</p>
-                    ) 
+                    return (<p className='text-indent reg-content'>
+                        <UrlLinkedTxt str={item}/> 
+                    </p>)                 
                 })}
                 </div>
                 

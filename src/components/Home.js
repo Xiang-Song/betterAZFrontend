@@ -9,6 +9,7 @@ import { SocialIcon } from 'react-social-icons'
 import Map from './map/Map'
 import LocationPin from './map/LocationPin'
 import SignPin from './map/SingPin'
+import UrlLinkedTxt from './UrlLinkedTxt'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './home.css'
 
@@ -58,13 +59,9 @@ const Home = () => {
     const formatDate = (oldDate) =>{
         return oldDate.split('T')[0].split('-')[1]+'-'+oldDate.split('T')[0].split('-')[2]+'-'+oldDate.split('T')[0].split('-')[0]
     }
+    
     const formatText = (txt, n) =>{
-        const shortTxt = txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '))
-        return (
-            shortTxt.match(/<http.*>/)
-            ? <>{shortTxt.match(/.*?(?=<http|$)/si)[0]}<a href={shortTxt.match(/<http.*>/)[0].slice(1,-1)} target='_blank'>{shortTxt.match(/<http.*>/)[0].split('//')[1].slice(0,-1)}</a> {shortTxt.match(/>(.*)/s)[1]}</>
-            : <>{shortTxt}</>
-        )
+        return txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '));
     }
 
     return (
@@ -112,7 +109,7 @@ const Home = () => {
                                         <Card.Body>
                                             <Card.Title className='c-title'>{item.Headline}</Card.Title>
                                             <Card.Text className='reg-content fs-1h'>
-                                            {formatDate(item.Date)} - {formatText(item.Textbody, 200)}
+                                            {formatDate(item.Date)} - <UrlLinkedTxt str={formatText(item.Textbody, 200)}/>
                                                 <Link to={'newsdetails/'+item.id} 
                                                 className='link'>
                                                     ...Read More
@@ -134,7 +131,7 @@ const Home = () => {
                                         <Card.Body>
                                             <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                             <Card.Text className='reg-content fs-1h'>
-                                            {formatDate(item.Date)} - {formatText(item.Textbody, 200)}
+                                            {formatDate(item.Date)} - <UrlLinkedTxt str={formatText(item.Textbody, 200)}/>
                                                 <Link to={'newsdetails/'+item.id} 
                                                 className='link'>
                                                     ...Read More
@@ -148,7 +145,7 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title  className='c-title'>{item.Headline}</Card.Title>
                                     <Card.Text className='reg-content fs-1h'>
-                                    {formatDate(item.Date)} - {formatText(item.Textbody, 500)}
+                                    {formatDate(item.Date)} - <UrlLinkedTxt str={formatText(item.Textbody, 500)}/>
                                         <Link to={'newsdetails/'+item.id} 
                                         className='link'>
                                             ...Read More
