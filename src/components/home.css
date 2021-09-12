@@ -432,6 +432,24 @@
   cursor: auto;
 }
 
+.event-icon {
+  color: #ff0000;
+  font-size: 20px;
+}
+
+.event-pin-radio {
+  display: none;
+}
+
+.event-list-item {
+  cursor: pointer;
+}
+
+.event-pin-radio:checked + .event-icon {
+  color: #bd1616;
+  font-size: 30px;
+}
+
 .break-word {
   word-wrap: break-word;
 }

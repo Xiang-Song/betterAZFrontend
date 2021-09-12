@@ -104,6 +104,7 @@ const Events = () => {
             <h2 className = 'self-center s-title wg-bg mt-0 mt-lg-3 mb-3 mb-lg-5'>All Future Events</h2>
             <Row className='events-container'>
                 <Col xs={12} lg={4} className='scrollable events-list-container'>
+                    
                     {sortCounty(Object.keys(eventsByCounty)).map((k, index)=> {
                         return <div key={index}>
                             <p className='dp-jc-between mb-0'>
@@ -115,7 +116,8 @@ const Events = () => {
                             <div className={isHide.indexOf(index) === -1 ? '' : 'hidden'}>
                             {eventsByCounty[k].sort((a, b) => (a.Date > b.Date) ? 1 : -1).map((item)=>{
                                 return(
-                                    <Card key={item.id} className='border-bt w-bg mb-1'>
+                                    <label key={item.id} for={item.Lat+item.Lng} className='event-list-item'>
+                                    <Card  className='border-bt w-bg mb-1'>
                                         <Card.Title className='dp-jc-start c-title mt-1 mt-lg-3'>{item.Headline} @ {formatDate(item.Date)}</Card.Title>
                                         <Card.Text className='light-content fs-1h mb-0'>
                                             <span className='dp-jc-start mb-1'>{item.Description}</span>
@@ -123,6 +125,7 @@ const Events = () => {
                                         </Card.Text>
                                         {item.notary || item.petition ? <Card.Text className='italic fs-1h dp-jc-start mb-3 mt-0'><span>Notary</span><span className="m-l-1vw">Petitions Available for Pick Up </span></Card.Text> : null}
                                     </Card>
+                                    </label>
                                 )
                             })}
                             </div>
@@ -138,6 +141,7 @@ const Events = () => {
                                         key={loc.id}
                                         lat={loc.Lat}
                                         lng={loc.Lng}
+                                        id={loc.id}
                                         text={(loc.Location || (loc.StreetNumber+' '+loc.StreetName+','+loc.City)) + '. Next event at ' + formatDate(loc.Date) + ',' + loc.Time}
                                     />
                                 )

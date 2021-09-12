@@ -1,18 +1,16 @@
 import React from 'react'
 import { BsGeoAlt } from 'react-icons/bs'
-import { IconContext } from 'react-icons'
 
 import './map.css'
 
-const LocationPin = ({text}) => {
+const LocationPin = ({text, lat, lng, id}) => {
     return (
-        <IconContext.Provider value={{ color: 'red', size: '20px' }}>
             <div className = 'icontip'>
-                <BsGeoAlt />
+                <input type='radio' name='pin' id={lat+lng} className='event-pin-radio'/>
+                <BsGeoAlt className='event-icon'/>
                 <p className = 'icontiptext'>{text}</p>
             </div>
             
-        </IconContext.Provider>
     )
 }
 
