@@ -61,6 +61,14 @@ const Home = () => {
     }
     
     const formatText = (txt, n) =>{
+        if(txt.match(/<http.*>/)){
+            let regex = txt.match(/<http.*>/);
+            for (let url of regex){
+                if(txt.indexOf(url) < n){
+                    n += url.length;
+                }
+            }
+        }
         return txt.slice(0,n).slice(0, txt.slice(0,n).lastIndexOf(' '));
     }
 
