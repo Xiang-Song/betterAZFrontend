@@ -287,7 +287,7 @@ const Home = () => {
                         <p className='ft-text check-address'>Pinetop, AZ 85935-8708 </p>    
                     </Col>
                     <Col xs={12} lg ={6} className='ft-col-l copyright'>
-                        <p className='ft-text mb-0'>Copyright © 2021 Arizona Deserves Better - All Rights Reserved.</p>
+                        <p className='ft-text'>Copyright © 2021 Arizona Deserves Better - All Rights Reserved.</p>
                     </Col>
                 </Row>
             </footer>
