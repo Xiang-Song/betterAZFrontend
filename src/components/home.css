@@ -367,10 +367,6 @@
   margin-left: 5vw;
 }
 
-.ft-col-l {
-  padding-left: 2vw;
-}
-
 .ft-text {
   font-size: 0.8em;
 }
@@ -459,9 +455,16 @@
   bottom: 5px;
 }
 
+.ft-col-l {
+  padding-left: 2vw;
+}
+
+.check-address:not(:last-child) {
+  margin-bottom: 0;
+}
+
 .check-address {
   line-height: 20px;
-  margin-bottom: 0;
 }
 
 .copyright {
