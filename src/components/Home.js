@@ -279,8 +279,15 @@ const Home = () => {
             <footer>
                 <Row className='ft-row mt-1 pb-1 pb-lg-5'>
                 <hr className='ft-hr mt-3 mb-3'/>
-                    <Col xs={10} lg ={10} className='ft-col-l'>
-                        <p className='ft-text'>Copyright © 2021 Arizona Deserves Better - All Rights Reserved.</p>
+                    <Col xs={12} lg ={6} className='ft-col-l'>
+                        <p className='ft-text check-address'>You can mail a check to: </p> 
+                        <p className='ft-text check-address'>Arizona Deserves Better </p> 
+                        <p className='ft-text check-address'>c/o Eric Kramer </p> 
+                        <p className='ft-text check-address'>1910 Douglas Fir Dr </p> 
+                        <p className='ft-text check-address'>Pinetop, AZ 85935-8708 </p>    
+                    </Col>
+                    <Col xs={12} lg ={6} className='ft-col-l copyright'>
+                        <p className='ft-text mb-0'>Copyright © 2021 Arizona Deserves Better - All Rights Reserved.</p>
                     </Col>
                 </Row>
             </footer>

@@ -368,7 +368,7 @@
 }
 
 .ft-col-l {
-  padding-left: 0;
+  padding-left: 2vw;
 }
 
 .ft-text {
@@ -457,6 +457,17 @@
 .higher {
   position: absolute;
   bottom: 5px;
+}
+
+.check-address {
+  line-height: 20px;
+  margin-bottom: 0;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 @media (max-width: 768px) {
