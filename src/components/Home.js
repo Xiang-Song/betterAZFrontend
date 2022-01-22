@@ -92,9 +92,12 @@ const Home = () => {
                     <div className='yellow-bg pad-l-5px mb-2'>
                         <p className='reg-content fs-1h text-indent'>Today’s Arizona legislature wants to limit your voting rights.</p> 
                         <p className='reg-content fs-1h text-indent'>The Arizona legislature of a century ago gave us the tools to fight back.</p>
-                        <p className='reg-content fs-1h text-indent'>Unlike other states whose legislatures are also passing bills to curtail voting rights, Arizona has a constitution that allows the voters themselves either to veto or uphold bills passed by the Legislature and signed by the Governor.</p>
-                        <p className='reg-content fs-1h text-indent'>Arizona Deserves Better is organizing a referendum effort to repeal these laws. With your help, we can gather 118,000 signatures in 90 days. Arizonans have stopped unpopular laws before and we can do it again, but we can’t do it without you.</p>
-                        <div ><Link to='/bills' className='link'>...Details on the Bills</Link></div>
+                        <p className='reg-content fs-1h text-indent'>Unlike other states whose legislatures are also passing bills to curtail voting rights, Arizona has a constitution that allows the voters themselves to put an Initiative on the ballot to change the law.</p>
+                        <p className='reg-content fs-1h text-indent'>Arizona Deserves Better is partnering with other organizations to place a Voting Rights Initiative on the 2022 ballot. With your help, we can gather the 60,000 signatures we need to provide by the end of June. (Other better funded groups are committed to providing the other 200,000 signatures needed.) We can have one of the best voting laws in the country. We just need to do it.</p>
+                        <div className='dp-jc-between m-r-1vw'>
+                            <Link to='/provisions' className='link'>Key Provisions</Link>
+                            <Link to='/initiative' className='link'>Full text of Initiative</Link>
+                        </div>
                     </div>
                     <div className='dp-jc-space'>
                         <Button href="https://secure.everyaction.com/x5h8oo6C4ESaRrJFbn_v7w2" target='_blank' variant="danger" className='wide-45'>Volunteer</Button>
