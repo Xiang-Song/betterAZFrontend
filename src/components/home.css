@@ -170,7 +170,8 @@
 }
 
 .hidden-btn:hover {
-  background-color: Transparent;
+  background-color: #eeeeee;
+  opacity: 0.5;
 }
 
 .hidden-btn:visited {
