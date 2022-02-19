@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {Button, Alert, Image, Row, Col, Card} from 'react-bootstrap'
-import heading from '../image/heading.jpg'
+import heading2 from '../image/heading2.jpg'
 import capital_clouds from '../image/capital_clouds.jpg'
-import eventsQR from '../image/eventsQR.png'
 import useResults from '../hooks/useResults'
 import { SocialIcon } from 'react-social-icons'
 import Map from './map/Map'
@@ -78,10 +77,17 @@ const Home = () => {
                 <Alert.Heading className='self-center lg-red-title mb-0'>{state.banner[0].Headline}</Alert.Heading>
             </Alert>
             <Card className= 'relative border-black'>
-                <Image src={heading} className='wide-80 m-l-10vw'/>
-                <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger" className='absolute ab-right-up'>Donate</Button>
-                <Button href="https://secure.everyaction.com/eYVHBAu8GkebyK9grQc_JQ2" target='_blank' variant="danger" className='absolute ab-right-second'>Volunteer</Button>
+                <Image src={heading2} className='wide-100 h-25vw'/>
+                <a href="https://www.azdemocracy.org/" target='_blank'  className='absolute ab-right-bottom hidden-btn'></a>
             </Card>
+
+            <div className='dp-jc-between mt-3'>
+                <Button href="https://secure.actblue.com/donate/azvoters" target='_blank' variant="danger" >Donate</Button>
+                <Button href="https://secure.everyaction.com/eYVHBAu8GkebyK9grQc_JQ2" target='_blank' variant="danger" >Volunteer</Button>
+                <Button href="https://secure.everyaction.com/JfF1jCxenEa1kYCqxH7BeA2" target='_blank' variant="danger" >Request Petitions for yourself</Button>
+                <Button href="https://secure.everyaction.com/0XOuuBRLN0qjHJ53ByfzfA2" target='_blank' variant="danger" >Request petitions, speaker or other resources for my group</Button>
+                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSd8vetjtIGiVtBPCwPK4V7gmpJZO2YvRSkb2IC_hRLstZdlSg/viewform" target='_blank' variant="danger" >Request support for a petition signing event</Button>
+            </div>
             
             <Row>
                 <Col xs={12} lg={4}  className='pad-l-5vw-r-1vw dp flow-column mt-3 mt-lg-5'>

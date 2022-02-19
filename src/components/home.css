@@ -102,6 +102,10 @@
   height: 21vw;
 }
 
+.h-25vw {
+  height: 25vw;
+}
+
 .h-36vw {
   height: 36vw;
 }
@@ -148,6 +152,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.ab-right-bottom {
+  bottom: 1vw;
+  right: 4vw;
+}
+
+.hidden-btn {
+  height: 4.5vw;
+  width: 16vw;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.hidden-btn:hover {
+  background-color: Transparent;
+}
+
+.hidden-btn:visited {
+  background-color: Transparent;
 }
 
 .ab-bottom {
