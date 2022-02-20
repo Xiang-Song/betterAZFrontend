@@ -87,7 +87,7 @@ const Home = () => {
                 <Button href="https://secure.everyaction.com/JfF1jCxenEa1kYCqxH7BeA2" target='_blank' variant="danger" >Request Petitions</Button>
                 <Button href="https://secure.everyaction.com/0XOuuBRLN0qjHJ53ByfzfA2" target='_blank' variant="danger" >Petitions for Group</Button>
                 <Button href="https://secure.everyaction.com/0XOuuBRLN0qjHJ53ByfzfA2" target='_blank' variant="danger" >Speaker Request</Button>
-                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSd8vetjtIGiVtBPCwPK4V7gmpJZO2YvRSkb2IC_hRLstZdlSg/viewform" target='_blank' variant="danger" >Support for Event</Button>
+                <Button href="https://docs.google.com/forms/d/e/1FAIpQLSd8vetjtIGiVtBPCwPK4V7gmpJZO2YvRSkb2IC_hRLstZdlSg/viewform" target='_blank' variant="danger" >Host an Event</Button>
             </div>
             
             <Row>
