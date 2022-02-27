@@ -97,6 +97,7 @@ const Home = () => {
                     </div>
                     <Image src={capital_clouds} className='wide-100'/>
                     <div className='yellow-bg pad-l-5px mb-2'>
+                        <p className='reg-content fs-1h text-indent'><strong>Who We Are</strong>: Arizonans for Fair Elections is a coalition that has filed with the Arizona Secretary of State to circulate petitions to place the Arizona Fair Elections Act on the November 2022 ballot. Arizona Deserves Better, which co-wrote the Initiative, is responsible for organizing volunteers to circulate petitions. The Arizona Democracy Collaborative is responsible for paid circulators working on the Initiative.</p>
                         <p className='reg-content fs-1h text-indent'>Today’s Arizona legislature wants to limit your voting rights.</p> 
                         <p className='reg-content fs-1h text-indent'>The Arizona legislature of a century ago gave us the tools to fight back.</p>
                         <p className='reg-content fs-1h text-indent'>Unlike other states whose legislatures are also passing bills to curtail voting rights, Arizona has a constitution that allows the voters themselves to put an Initiative on the ballot to change the law.</p>
