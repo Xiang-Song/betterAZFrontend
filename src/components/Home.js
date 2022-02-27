@@ -116,7 +116,7 @@ const Home = () => {
                 <Col xs={12} lg={8} className='pad-l-1vw-r-5vw mt-3 mt-lg-5'> 
                 <h3 className = 'self-center s-title wg-bg'>WHAT'S HOT</h3>
                 <div className='w-bg'>
-                    {state.news.sort((a, b) => (a.Date < b.Date) ? 1 : -1).slice(0,3).map((item, index)=>{
+                    {state.news.sort((a, b) => (a.Date < b.Date) ? 1 : -1).slice(0,5).map((item, index)=>{
                         return(
                             item.ImageLink ? 
                             <Card key={index} className='border-none'>
